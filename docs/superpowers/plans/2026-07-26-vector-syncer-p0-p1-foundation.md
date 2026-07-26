@@ -397,6 +397,8 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
       - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.deepinfra.com/v1/openai}
+      - OCR_BASE_URL=${OCR_BASE_URL:-}       # falls back to OPENAI_BASE_URL above if unset
+      - OCR_API_KEY=${OCR_API_KEY:-}         # falls back to OPENAI_API_KEY above if unset
       - OCR_LLM_MODEL=${OCR_LLM_MODEL:-}
     expose: ["8000"]
     healthcheck:
@@ -440,8 +442,15 @@ REDIS_URL=redis://localhost:6379
 LOG_LEVEL=info
 
 # ── AI provider (used from Phase 3) ──────────────────────
-OPENAI_API_KEY=   # DeepInfra token (or any OpenAI-compatible provider)
+OPENAI_API_KEY=   # DeepInfra token (or any OpenAI-compatible provider) — shared default
 OPENAI_BASE_URL=https://api.deepinfra.com/v1/openai
+# Per-role overrides — leave blank to use the shared pair above for that role
+EMBEDDING_BASE_URL=
+EMBEDDING_API_KEY=
+OCR_BASE_URL=
+OCR_API_KEY=
+LLM_BASE_URL=
+LLM_API_KEY=
 OCR_LLM_MODEL=Qwen/Qwen3-VL-235B-A22B-Instruct
 
 # ── Phase 4+ (documented ahead; unread until those plans) ─

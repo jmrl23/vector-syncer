@@ -19,7 +19,7 @@ Key properties:
 - **Incremental** — Microsoft Graph *delta queries* return only what changed since the last run; unchanged files are never re-downloaded or re-embedded.
 - **Idempotent** — deterministic point IDs and content-hash checks make every job safe to retry.
 - **Hybrid search from day one** — every point carries a dense bge-m3 vector *and* a locally computed BM25-style sparse vector; consumers query with RRF fusion, so exact tokens (codes, invoice numbers) and semantic paraphrases both hit.
-- **Self-contained core, one AI provider** — runs as a small `docker compose` stack (Node.js worker, Python conversion sidecar, Redis, Qdrant). All AI — `BAAI/bge-m3` embeddings, `Qwen/Qwen3-VL-235B-A22B-Instruct` OCR, `deepseek-ai/DeepSeek-V4-Flash` catalog descriptions — goes through **DeepInfra's OpenAI-compatible API** using the official OpenAI SDK and a single key. Provider, endpoint and model IDs are pure configuration (`OPENAI_BASE_URL` + model env vars) — nothing is hardcoded.
+- **Self-contained core, provider-flexible AI** — runs as a small `docker compose` stack (Node.js worker, Python conversion sidecar, Redis, Qdrant). All AI — `BAAI/bge-m3` embeddings, `Qwen/Qwen3-VL-235B-A22B-Instruct` OCR, `deepseek-ai/DeepSeek-V4-Flash` catalog descriptions — goes through an **OpenAI-compatible API** (DeepInfra by default) using the official OpenAI SDK. Provider, endpoint and model IDs are pure configuration (`OPENAI_BASE_URL`/`OPENAI_API_KEY` shared default + model env vars, each independently overridable per role) — nothing is hardcoded.
 - **Self-describing** — a small `od_catalog` collection holds one embedded, LLM-described entry per base-folder collection, so agentic consumers can pick the right collection before searching.
 
 ## Planning documents
