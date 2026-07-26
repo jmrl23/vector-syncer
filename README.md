@@ -37,6 +37,10 @@ Key properties:
 | [09-roadmap.md](09-roadmap.md) | Implementation phases with acceptance criteria |
 | [10-decisions-and-risks.md](10-decisions-and-risks.md) | Decision log, **open questions that need answers**, risk register |
 
+## Feature guides (usage)
+
+Usage-oriented guides — one per feature, written for the people and apps *using* the system — live in [docs/features/](docs/features/README.md): [OneDrive sync](docs/features/onedrive-sync.md), [searching from your app](docs/features/searching-from-your-app.md), [collection discovery](docs/features/collection-discovery.md), [conversation store](docs/features/conversation-store.md), [operations](docs/features/operations.md), and [model & provider flexibility](docs/features/model-and-provider-flexibility.md).
+
 ## Glossary
 
 | Term | Meaning |
