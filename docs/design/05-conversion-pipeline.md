@@ -40,6 +40,8 @@ import io, os
 
 app = FastAPI()
 
+PROMPTS_DIR = Path(__file__).parent.parent / "prompts"    # all prompt text lives here as .hbs (D16)
+
 # Engines built once at startup — MarkItDown imports are heavy, keep them warm.
 plain = MarkItDown(enable_plugins=False)
 ocr = None
@@ -49,8 +51,7 @@ if os.getenv("OCR_LLM_MODEL"):                        # chosen: Qwen3-VL via Dee
         enable_plugins=True,                          # activates the markitdown-ocr plugin
         llm_client=OpenAI(),                          # reads OPENAI_BASE_URL / OPENAI_API_KEY (→ DeepInfra)
         llm_model=os.environ["OCR_LLM_MODEL"],        # Qwen/Qwen3-VL-235B-A22B-Instruct
-        llm_prompt=(Path(__file__).parent.parent      # prompt text ships as a template file,
-                    / "prompts" / "ocr-image.hbs").read_text(),   # never as a string in code (D16)
+        llm_prompt=(PROMPTS_DIR / "ocr-image.hbs").read_text(),   # static template, read once (D16)
     )
 elif os.getenv("DOCINTEL_ENDPOINT"):                  # fallback tier: Azure Document Intelligence
     ocr = MarkItDown(docintel_endpoint=os.environ["DOCINTEL_ENDPOINT"])

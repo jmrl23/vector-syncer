@@ -18,7 +18,7 @@ A worker that mirrors one OneDrive folder (delegated device-code auth, Graph del
 ## Non-negotiable design constraints
 
 - **AI access only through the official OpenAI SDK**, configured via its native `OPENAI_BASE_URL`/`OPENAI_API_KEY`; every model ID is its own env var. Nothing provider-specific in code (DeepInfra is a config value).
-- **LLM prompt text never lives in source code** (owner rule, 2026-07-27): every system/instruction prompt is a `.hbs` Handlebars template under `worker/prompts/` or `converter/prompts/`, loaded — and rendered, when it has variables — at runtime (D16).
+- **LLM prompt text never lives in source code** (owner rule, 2026-07-27): every system/instruction prompt is a `.hbs` Handlebars template under `worker/prompts/` or `converter/prompts/` (D16). Kebab-case filenames, camelCase variables; templates load through one compile-once loader per runtime (`worker/src/prompts.ts` with typed render functions) — call sites never touch fs/Handlebars directly.
 - Swapping the **embedding model means a full re-index** (alias-flip rebuild); OCR/description models swap freely. Query embedding must always match the indexing model.
 - The worker creates/writes/drops **only** `od_*` collections and `od_catalog`. Any other collection in the same Qdrant (e.g. `app_conversations`) is consumer-owned — never touch it from worker code.
 - The `bm25-v1` sparse encoder is **shared code with the consumer app** (imported, never reimplemented); changing it = version bump + sparse-only backfill, and golden-vector tests pin the encoding.

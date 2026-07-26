@@ -1,41 +1,96 @@
 {
   "directed": false,
   "multigraph": false,
-  "graph": {
-    "hyperedges": [
-      {
-        "id": "vector_syncer_components",
-        "label": "Vector Syncer Core Components",
-        "nodes": [
-          "claude_md_onedrive_integration",
-          "claude_md_qdrant_collections",
-          "claude_md_embedding_model",
-          "claude_md_bm25_sparse_encoder",
-          "claude_md_redis_bullmq",
-          "claude_md_consistency_machinery",
-          "claude_md_security_secrets"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "CLAUDE.md"
-      },
-      {
-        "id": "document_hierarchy",
-        "label": "Document Hierarchy",
-        "nodes": [
-          "claude_md_spec_doc",
-          "claude_md_design_docs",
-          "claude_md_implementation_plans"
-        ],
-        "relation": "form",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "CLAUDE.md"
-      }
-    ]
-  },
+  "graph": {},
   "nodes": [
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_claude_md",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "Repository state",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "claude_repository_state",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "repository state"
+    },
+    {
+      "label": "What this builds",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "claude_what_this_builds",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "what this builds"
+    },
+    {
+      "label": "Non-negotiable design constraints",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "claude_non_negotiable_design_constraints",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "non-negotiable design constraints"
+    },
+    {
+      "label": "Package managers & commands",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "claude_package_managers_commands",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "package managers & commands"
+    },
+    {
+      "label": "Process rules",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "claude_process_rules",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "process rules"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "claude_graphify",
+      "community": 8,
+      "community_name": "Collection Layout & State",
+      "norm_label": "graphify"
+    },
     {
       "label": "README.md",
       "file_type": "document",
@@ -120,8 +175,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_03_tech_stack",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "03 \u2014 tech stack"
     },
     {
@@ -131,8 +186,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_1_summary",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "1. summary"
     },
     {
@@ -142,8 +197,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_2_the_one_structural_decision_hybrid_node_python",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "2. the one structural decision: hybrid node + python"
     },
     {
@@ -153,8 +208,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_option_a_all_typescript",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "option a \u2014 all typescript \u274c"
     },
     {
@@ -164,8 +219,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_option_b_all_python_close_second",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "option b \u2014 all python \u274c (close second)"
     },
     {
@@ -175,8 +230,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_option_c_hybrid_node_orchestrator_python_conversion_sidecar",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "option c \u2014 hybrid: node orchestrator + python conversion sidecar \u2705"
     },
     {
@@ -186,8 +241,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_also_rejected",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "also rejected"
     },
     {
@@ -197,8 +252,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_3_dependency_lists_planned",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "3. dependency lists (planned)"
     },
     {
@@ -208,8 +263,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_worker_package_json_runtime",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "worker/package.json (runtime)"
     },
     {
@@ -219,8 +274,8 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_converter_pyproject_toml_runtime",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "converter/pyproject.toml (runtime)"
     },
     {
@@ -230,8 +285,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_infrastructure_images",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "infrastructure images"
     },
     {
@@ -241,8 +296,8 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "docs_design_03_tech_stack_4_version_pinning_policy",
-      "community": 8,
-      "community_name": "Collection Layout & State",
+      "community": 4,
+      "community_name": "Document Index",
       "norm_label": "4. version pinning policy"
     },
     {
@@ -263,8 +318,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_05_conversion_pipeline_markitdown_ocr_chunking_embeddings",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "05 \u2014 conversion pipeline: markitdown, ocr, chunking, embeddings"
     },
     {
@@ -274,8 +329,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_1_converter_service_python_sidecar",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "1. converter service (python sidecar)"
     },
     {
@@ -285,8 +340,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_api_contract",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "api contract"
     },
     {
@@ -296,64 +351,218 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_implementation_sketch",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "implementation sketch"
     },
     {
       "label": "2. What MarkItDown covers (v0.1.6, `markitdown[all]`)",
       "file_type": "document",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L76",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_2_what_markitdown_covers_v0_1_6_markitdown_all",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "2. what markitdown covers (v0.1.6, `markitdown[all]`)"
     },
     {
       "label": "3. OCR strategy (decision D8 \u2014 chosen: Qwen3-VL on DeepInfra)",
       "file_type": "document",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L86",
+      "source_location": "L87",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_3_ocr_strategy_decision_d8_chosen_qwen3_vl_on_deepinfra",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "3. ocr strategy (decision d8 \u2014 chosen: qwen3-vl on deepinfra)"
     },
     {
       "label": "4. Chunking (worker-side, TypeScript)",
       "file_type": "document",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L99",
+      "source_location": "L100",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_4_chunking_worker_side_typescript",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "4. chunking (worker-side, typescript)"
     },
     {
       "label": "5. Embeddings \u2014 `BAAI/bge-m3` via DeepInfra (OpenAI SDK)",
       "file_type": "document",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L120",
+      "source_location": "L121",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_5_embeddings_baai_bge_m3_via_deepinfra_openai_sdk",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "5. embeddings \u2014 `baai/bge-m3` via deepinfra (openai sdk)"
     },
     {
       "label": "6. Per-file pipeline summary (inside one `process-file` job)",
       "file_type": "document",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L158",
+      "source_location": "L159",
       "_origin": "ast",
       "id": "docs_design_05_conversion_pipeline_6_per_file_pipeline_summary_inside_one_process_file_job",
-      "community": 12,
-      "community_name": "05 \u2014 Conversion pipeline: MarkItDown, OCR, chunking, embeddings",
+      "community": 7,
+      "community_name": "Hybrid Search & Consumer Contract",
       "norm_label": "6. per-file pipeline summary (inside one `process-file` job)"
+    },
+    {
+      "label": "06-qdrant-design.md",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design",
+      "community": 0,
+      "community_name": "Sync Engine & Queue Semantics",
+      "norm_label": "06-qdrant-design.md"
+    },
+    {
+      "label": "06 \u2014 Qdrant design",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_06_qdrant_design",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "06 \u2014 qdrant design"
+    },
+    {
+      "label": "1. Collection layout: one per base folder (decision D12)",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_1_collection_layout_one_per_base_folder_decision_d12",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "1. collection layout: one per base folder (decision d12)"
+    },
+    {
+      "label": "Naming & mapping",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_naming_mapping",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "naming & mapping"
+    },
+    {
+      "label": "Creation (per collection, on demand)",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_creation_per_collection_on_demand",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "creation (per collection, on demand)"
+    },
+    {
+      "label": "2. Point IDs \u2014 deterministic, idempotent",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_2_point_ids_deterministic_idempotent",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "2. point ids \u2014 deterministic, idempotent"
+    },
+    {
+      "label": "3. Payload schema (document collections)",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_3_payload_schema_document_collections",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "3. payload schema (document collections)"
+    },
+    {
+      "label": "4. Write paths",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_4_write_paths",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "4. write paths"
+    },
+    {
+      "label": "5. Delete paths (FR-15 \u2014 OneDrive deletion \u21d2 Qdrant deletion, always)",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L125",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_5_delete_paths_fr_15_onedrive_deletion_qdrant_deletion_always",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "5. delete paths (fr-15 \u2014 onedrive deletion \u21d2 qdrant deletion, always)"
+    },
+    {
+      "label": "6. The catalog collection (`od_catalog`, decision D13)",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L141",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_6_the_catalog_collection_od_catalog_decision_d13",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "6. the catalog collection (`od_catalog`, decision d13)"
+    },
+    {
+      "label": "7. Reconcile, rebuild, model changes",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L163",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_7_reconcile_rebuild_model_changes",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "7. reconcile, rebuild, model changes"
+    },
+    {
+      "label": "8. What consumers do (reference queries)",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L170",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_8_what_consumers_do_reference_queries",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "8. what consumers do (reference queries)"
+    },
+    {
+      "label": "9. Future: beyond BM25 hybrid",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L199",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_9_future_beyond_bm25_hybrid",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "9. future: beyond bm25 hybrid"
+    },
+    {
+      "label": "10. Consumer-owned collections: the conversation store (user addition, 2026-07-26)",
+      "file_type": "document",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "docs_design_06_qdrant_design_10_consumer_owned_collections_the_conversation_store_user_addition_2026_07_26",
+      "community": 1,
+      "community_name": "Feature Guides & Operations",
+      "norm_label": "10. consumer-owned collections: the conversation store (user addition, 2026-07-26)"
     },
     {
       "label": "08-configuration-and-deployment.md",
@@ -373,8 +582,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_design_08_configuration_and_deployment_08_configuration_deployment",
-      "community": 0,
-      "community_name": "Sync Engine & Queue Semantics",
+      "community": 10,
+      "community_name": "Conversation Store",
       "norm_label": "08 \u2014 configuration & deployment"
     },
     {
@@ -384,63 +593,63 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "docs_design_08_configuration_and_deployment_1_planned_repository_layout",
-      "community": 0,
-      "community_name": "Sync Engine & Queue Semantics",
+      "community": 10,
+      "community_name": "Conversation Store",
       "norm_label": "1. planned repository layout"
     },
     {
       "label": "2. Environment variables",
       "file_type": "document",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L39",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "docs_design_08_configuration_and_deployment_2_environment_variables",
-      "community": 0,
-      "community_name": "Sync Engine & Queue Semantics",
+      "community": 10,
+      "community_name": "Conversation Store",
       "norm_label": "2. environment variables"
     },
     {
       "label": "3. docker-compose.yml (sketch)",
       "file_type": "document",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L80",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "docs_design_08_configuration_and_deployment_3_docker_compose_yml_sketch",
-      "community": 0,
-      "community_name": "Sync Engine & Queue Semantics",
+      "community": 10,
+      "community_name": "Conversation Store",
       "norm_label": "3. docker-compose.yml (sketch)"
     },
     {
       "label": "4. Local development loop",
       "file_type": "document",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L127",
+      "source_location": "L128",
       "_origin": "ast",
       "id": "docs_design_08_configuration_and_deployment_4_local_development_loop",
-      "community": 0,
-      "community_name": "Sync Engine & Queue Semantics",
+      "community": 10,
+      "community_name": "Conversation Store",
       "norm_label": "4. local development loop"
     },
     {
       "label": "5. Operations runbook",
       "file_type": "document",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L139",
+      "source_location": "L140",
       "_origin": "ast",
       "id": "docs_design_08_configuration_and_deployment_5_operations_runbook",
-      "community": 0,
-      "community_name": "Sync Engine & Queue Semantics",
+      "community": 10,
+      "community_name": "Conversation Store",
       "norm_label": "5. operations runbook"
     },
     {
       "label": "6. Deployment targets",
       "file_type": "document",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L156",
+      "source_location": "L157",
       "_origin": "ast",
       "id": "docs_design_08_configuration_and_deployment_6_deployment_targets",
-      "community": 0,
-      "community_name": "Sync Engine & Queue Semantics",
+      "community": 10,
+      "community_name": "Conversation Store",
       "norm_label": "6. deployment targets"
     },
     {
@@ -510,6 +719,138 @@
       "norm_label": "4. standing review triggers"
     },
     {
+      "label": "2026-07-26-vector-syncer-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "2026-07-26-vector-syncer-design.md"
+    },
+    {
+      "label": "vector-syncer \u2014 Design Specification",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "vector-syncer \u2014 design specification"
+    },
+    {
+      "label": "1. Purpose",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_1_purpose",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "1. purpose"
+    },
+    {
+      "label": "2. Confirmed decisions (owner-validated 2026-07-26)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_2_confirmed_decisions_owner_validated_2026_07_26",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "2. confirmed decisions (owner-validated 2026-07-26)"
+    },
+    {
+      "label": "3. Architecture",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_3_architecture",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "3. architecture"
+    },
+    {
+      "label": "4. Key mechanisms",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_4_key_mechanisms",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "4. key mechanisms"
+    },
+    {
+      "label": "5. Payload (what a point carries)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_5_payload_what_a_point_carries",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "5. payload (what a point carries)"
+    },
+    {
+      "label": "6. Error handling summary",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_6_error_handling_summary",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "6. error handling summary"
+    },
+    {
+      "label": "7. Testing strategy",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_7_testing_strategy",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "7. testing strategy"
+    },
+    {
+      "label": "8. MVP acceptance criteria",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_8_mvp_acceptance_criteria",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "8. mvp acceptance criteria"
+    },
+    {
+      "label": "9. Implementation phases",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_9_implementation_phases",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "9. implementation phases"
+    },
+    {
+      "label": "10. Top risks (register: `docs/design/10-decisions-and-risks.md` \u00a73)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L106",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_10_top_risks_register_docs_design_10_decisions_and_risks_md_3",
+      "community": 6,
+      "community_name": "Conversion & OCR",
+      "norm_label": "10. top risks (register: `docs/design/10-decisions-and-risks.md` \u00a73)"
+    },
+    {
       "label": "01 \u2014 Requirements",
       "file_type": "document",
       "source_file": "docs/design/01-requirements.md",
@@ -550,20 +891,6 @@
       "norm_label": "04 \u2014 onedrive / microsoft graph integration",
       "community_name": "Approved Spec Concepts",
       "id": "docs_design_04_onedrive_graph_integration"
-    },
-    {
-      "label": "06 \u2014 Qdrant Design",
-      "file_type": "document",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "norm_label": "06 \u2014 qdrant design",
-      "community_name": "Approved Spec Concepts",
-      "id": "docs_design_06_qdrant_design"
     },
     {
       "label": "07 \u2014 BullMQ Design",
@@ -622,21 +949,6 @@
       "norm_label": "redis",
       "community_name": "Runtime Components & Stack",
       "id": "docs_design_07_bullmq_design_redis"
-    },
-    {
-      "label": "Qdrant",
-      "file_type": "concept",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Vector DB holding one collection per base folder plus od_catalog \u2014 the product of the whole pipeline; user requirement (payload filtering, indexes, aliases for zero-downtime reindex).",
-      "community": 4,
-      "norm_label": "qdrant",
-      "community_name": "Document Index",
-      "id": "docs_design_06_qdrant_design_qdrant"
     },
     {
       "label": "BullMQ",
@@ -722,9 +1034,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Fan-out: process-file, delete-file/folder, update-metadata, refresh-catalog; deduplicated, independently rate-limited and retried; concurrency N default 4, live-adjustable.",
-      "community": 1,
+      "community": 5,
       "norm_label": "files queue",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_07_bullmq_design_files_queue"
     },
     {
@@ -743,51 +1055,6 @@
       "id": "docs_design_07_bullmq_design_job_scheduler"
     },
     {
-      "label": "od_catalog Catalog Collection",
-      "file_type": "concept",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "One embedded, LLM-described point per document collection so consumers (especially agents) can enumerate deterministically (scroll) and semantically route queries (vector search) before searching (D13); also the tool-shape for a future MCP server.",
-      "community": 6,
-      "norm_label": "od_catalog catalog collection",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_od_catalog"
-    },
-    {
-      "label": "Conversation Store (app_conversations)",
-      "file_type": "concept",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Consumer-owned collection outside od_*; the worker's namespace boundary (only od_* + od_catalog are ever touched) guarantees it can never be collateral damage; a conversationId alone retrieves the ordered transcript.",
-      "community": 6,
-      "norm_label": "conversation store (app_conversations)",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_conversation_store"
-    },
-    {
-      "label": "Shared Consumer Package",
-      "file_type": "concept",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Consumer app imports the exact bm25-v1 module and conversation-store helpers instead of reimplementing \u2014 prevents tokenizer/hash drift that would silently degrade hybrid recall; built in Phase 4; the worker never calls the helpers.",
-      "community": 6,
-      "norm_label": "shared consumer package",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_shared_consumer_package"
-    },
-    {
       "label": "Redis Sync State (vs:* keys)",
       "file_type": "concept",
       "source_file": "docs/design/02-architecture.md",
@@ -797,9 +1064,9 @@
       "author": null,
       "contributor": null,
       "rationale": "deltaLink, root ids, base-folder-to-collection map, folder map, per-file cTag/hash/chunk-count/status; every key documents what losing it costs \u2014 all rebuildable from OneDrive + Qdrant payloads (D5: no SQL database).",
-      "community": 6,
+      "community": 5,
       "norm_label": "redis sync state (vs:* keys)",
-      "community_name": "Conversion & OCR",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_02_architecture_sync_state"
     },
     {
@@ -827,9 +1094,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Maps each delta item (deleted/folder/file facets, cTag comparison, base-folder resolution via the vs:folder map) to the right job: process, re-route, metadata patch, delete, or skip; edge cases parked for the Phase-1 spike.",
-      "community": 1,
+      "community": 5,
       "norm_label": "delta item classification",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_04_onedrive_graph_integration_delta_classification"
     },
     {
@@ -917,130 +1184,10 @@
       "author": null,
       "contributor": null,
       "rationale": "cTag changes only when content changes (eTag also churns on metadata); preference order: quickXorHash/sha256 content hashes, then cTag as an opaque equality token.",
-      "community": 1,
-      "norm_label": "ctag change detection",
-      "community_name": "Feature Guides & Operations",
-      "id": "docs_design_04_onedrive_graph_integration_ctag"
-    },
-    {
-      "label": "Collection per Base Folder",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Each top-level subfolder isolates into od_{slug} (alias over versioned physical, created lazily, dropped with the folder); mapping keyed by folder ID so renames don't break; accepted costs (D12): global search = client-side fan-out, per-collection HNSW overhead \u2014 revisit past a few dozen folders.",
-      "community": 6,
-      "norm_label": "collection per base folder",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_collection_per_base_folder"
-    },
-    {
-      "label": "Deterministic UUIDv5 Point IDs",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "uuidv5(driveId/itemId#chunkIndex, fixed namespace): re-processing computes identical IDs so upserts overwrite and retries are free; collection-independent, so cross-collection moves are plain delete+insert.",
-      "community": 1,
-      "norm_label": "deterministic uuidv5 point ids",
-      "community_name": "Feature Guides & Operations",
-      "id": "docs_design_06_qdrant_design_deterministic_point_ids"
-    },
-    {
-      "label": "Point Payload Schema",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Every point self-describing and attributable without a second lookup (FR-14): file identity, path, authorship, timestamps, heading path, raw chunk text, content hash, embed_model and sparse_encoder version guards; indexed fields (file_id, ancestor_ids, extension, mime_type, last_modified_ts) power deletes and filters.",
-      "community": 6,
-      "norm_label": "point payload schema",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_payload_schema"
-    },
-    {
-      "label": "bm25-v1 Sparse Encoder",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "~100 lines worker-local, no API call: unicode tokenize, FNV-1a hash to u32 indices, BM25 TF saturation (k1=1.2, b=0.75, avgLen=256); IDF stays server-side via modifier:idf so it tracks the live corpus; shared code with the consumer app \u2014 version bump = cheap sparse-only backfill, golden-vector tests pin the encoding.",
-      "community": 6,
-      "norm_label": "bm25-v1 sparse encoder",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_bm25_v1_encoder"
-    },
-    {
-      "label": "Delete-Then-Upsert per File",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Delete by file_id filter then upsert the new set (wait:true) guarantees no stale chunks survive shrinkage; the milliseconds-long zero-point window is accepted (D7) over more complex trailing-delete schemes.",
-      "community": 1,
-      "norm_label": "delete-then-upsert per file",
-      "community_name": "Feature Guides & Operations",
-      "id": "docs_design_06_qdrant_design_delete_then_upsert"
-    },
-    {
-      "label": "Hybrid RRF Search",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Every point carries dense + sparse from day one (D14): exact tokens (codes, invoice numbers) hit via the sparse side, paraphrases via dense; queries prefetch both slots and fuse with RRF; query embedding must match the indexing model, query sparse must use the identical bm25-v1 module.",
-      "community": 6,
-      "norm_label": "hybrid rrf search",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_hybrid_rrf_search"
-    },
-    {
-      "label": "Alias-Flip Rebuild",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Physical collections are versioned (_vN) behind stable aliases: rebuild into _v2, flip the alias, drop _v1 \u2014 zero-downtime re-index for embedding-model or chunking changes; Qdrant's additive createVectorName migration is the alternative path.",
-      "community": 6,
-      "norm_label": "alias-flip rebuild",
-      "community_name": "Conversion & OCR",
-      "id": "docs_design_06_qdrant_design_alias_flip_rebuild"
-    },
-    {
-      "label": "Weekly Reconcile",
-      "file_type": "rationale",
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Safety net for delta edge cases and stragglers: full enumeration fixes stale paths, orphaned file_ids, hash mismatches, catalog stats/descriptions, orphaned collections; cheap because hash-skip makes untouched files no-ops.",
       "community": 5,
-      "norm_label": "weekly reconcile",
+      "norm_label": "ctag change detection",
       "community_name": "Runtime Components & Stack",
-      "id": "docs_design_06_qdrant_design_weekly_reconcile"
+      "id": "docs_design_04_onedrive_graph_integration_ctag"
     },
     {
       "label": "Job Deduplication (itemId:cTag)",
@@ -1052,9 +1199,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Same content version queued once: re-walking an uncommitted delta window collapses silently; a newer cTag is a new dedup ID and the older job completes as superseded after its metadata re-fetch.",
-      "community": 1,
+      "community": 5,
       "norm_label": "job deduplication (itemid:ctag)",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_07_bullmq_design_deduplication"
     },
     {
@@ -1067,9 +1214,9 @@
       "author": null,
       "contributor": null,
       "rationale": "worker.rateLimit(retryAfter) + Worker.RateLimitError pauses the whole queue without consuming a retry attempt \u2014 honors Retry-After from both Graph and DeepInfra; static limiter (max 8 jobs/sec) as safety net.",
-      "community": 1,
+      "community": 5,
       "norm_label": "manual rate limiting (429 handling)",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_07_bullmq_design_rate_limiting"
     },
     {
@@ -1082,9 +1229,9 @@
       "author": null,
       "contributor": null,
       "rationale": "worker.concurrency is a public setter: cli.js concurrency <n> writes a Redis config key, applied live with no restart, reported on /health; the sync worker is deliberately not adjustable \u2014 its concurrency 1 is a correctness invariant.",
-      "community": 1,
+      "community": 5,
       "norm_label": "runtime-adjustable files concurrency",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_07_bullmq_design_adjustable_concurrency"
     },
     {
@@ -1097,9 +1244,9 @@
       "author": null,
       "contributor": null,
       "rationale": "429s never consume attempts; transient errors backoff exponentially x4; bad files complete as skipped_* statuses (not errors); auth interaction_required is UnrecoverableError plus red health.",
-      "community": 1,
+      "community": 5,
       "norm_label": "retry matrix",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_07_bullmq_design_retry_matrix"
     },
     {
@@ -1112,9 +1259,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Qdrant and Redis are derived, rebuildable indexes; losing the delta token costs a re-enumeration (hash-skip avoids re-embedding), never data \u2014 the principle behind every recovery path.",
-      "community": 6,
+      "community": 5,
       "norm_label": "onedrive as source of truth",
-      "community_name": "Conversion & OCR",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_01_requirements_source_of_truth"
     },
     {
@@ -1127,9 +1274,9 @@
       "author": null,
       "contributor": null,
       "rationale": "NFR-1: every job safe to run twice, at-least-once delivery end to end \u2014 achieved via deterministic point IDs, dedup IDs, delete-then-upsert, and content-hash skips.",
-      "community": 1,
+      "community": 5,
       "norm_label": "idempotency principle",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_01_requirements_idempotency"
     },
     {
@@ -1142,9 +1289,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Delta token advances only after the full page walk and all enqueues (D6); a crash mid-walk re-reads the same window and dedup collapses duplicates; a poison file fails visibly in Bull Board without wedging the token.",
-      "community": 1,
+      "community": 5,
       "norm_label": "at-least-once delivery",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_02_architecture_at_least_once_delivery"
     },
     {
@@ -1157,9 +1304,9 @@
       "author": null,
       "contributor": null,
       "rationale": "P0 bootstrap, P1 auth+graph spike, P2 queues, P3 conversion, P4 indexing (= MVP), P5 hardening, P6 extensions backlog; each phase has acceptance criteria; later plans are written only at phase boundaries because spike findings feed them.",
-      "community": 6,
+      "community": 5,
       "norm_label": "implementation phases p0-p6",
-      "community_name": "Conversion & OCR",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_09_roadmap_implementation_phases"
     },
     {
@@ -1172,9 +1319,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Acceptance = requirements doc section 7: add/edit/delete round-trips, kill-mid-sync safety, base-folder routing and moves, hybrid RRF plus exact-token recall, complete catalog enumeration.",
-      "community": 6,
+      "community": 5,
       "norm_label": "mvp (end of phase 4)",
-      "community_name": "Conversion & OCR",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_09_roadmap_mvp"
     },
     {
@@ -1187,9 +1334,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Verifies empirically what docs cannot promise: folder-scoped delta behavior on the real drive type, which file.hashes exist, what move-out-of-scope and folder-rename emit \u2014 findings encoded as regression tests and doc updates in 04 section 4.",
-      "community": 1,
+      "community": 5,
       "norm_label": "phase-1 graph spike",
-      "community_name": "Feature Guides & Operations",
+      "community_name": "Runtime Components & Stack",
       "id": "docs_design_09_roadmap_phase_1_spike"
     },
     {
@@ -1285,9 +1432,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 2,
       "norm_label": "searching from your app feature guide",
-      "community_name": "Document Index",
+      "community_name": "Approved Spec Concepts",
       "id": "docs_features_searching_from_your_app"
     },
     {
@@ -1303,20 +1450,6 @@
       "norm_label": "p0+p1 foundation implementation plan",
       "community_name": "P0+P1 Implementation Plan",
       "id": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation"
-    },
-    {
-      "label": "vector-syncer Design Specification",
-      "file_type": "document",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "vector-syncer design specification",
-      "community_name": "Document Index",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design"
     },
     {
       "label": "od_catalog Collection Registry",
@@ -1444,9 +1577,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 2,
       "norm_label": "shared consumer package (@vector-syncer/consumer)",
-      "community_name": "Document Index",
+      "community_name": "Approved Spec Concepts",
       "id": "docs_features_searching_from_your_app_consumer_package"
     },
     {
@@ -1504,9 +1637,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 2,
       "norm_label": "base folder to collection mapping (od_slug)",
-      "community_name": "Document Index",
+      "community_name": "Approved Spec Concepts",
       "id": "docs_features_onedrive_sync_base_folder_mapping"
     },
     {
@@ -1638,9 +1771,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 2,
       "norm_label": "search result payload contract",
-      "community_name": "Document Index",
+      "community_name": "Approved Spec Concepts",
       "id": "docs_features_searching_from_your_app_payload_contract"
     },
     {
@@ -1668,145 +1801,10 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
-      "norm_label": "sparse-only degraded mode",
-      "community_name": "Document Index",
-      "id": "docs_features_searching_from_your_app_sparse_only_fallback"
-    },
-    {
-      "label": "Hybrid Search (Dense + Sparse RRF)",
-      "file_type": "concept",
-      "rationale": "Hybrid from day one (D14): every point carries dense plus sparse vectors and queries prefetch both then fuse with RRF, so semantic paraphrases and exact tokens (invoice numbers, codes, names) both hit.",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "hybrid search (dense + sparse rrf)",
-      "community_name": "Document Index",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_search"
-    },
-    {
-      "label": "bm25-v1 Sparse Encoder",
-      "file_type": "concept",
-      "rationale": "Unicode tokenize, lowercase, FNV-1a u32, BM25 TF saturation (k1=1.2 b=0.75 avgLen=256) with IDF applied server-side by Qdrant. Ships as an importable module and records sparse_encoder per point so indexer-vs-app drift is detectable; an encoder version bump is a sparse-only backfill with no re-embedding.",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "bm25-v1 sparse encoder",
-      "community_name": "Document Index",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bm25_v1"
-    },
-    {
-      "label": "Hybrid Node + Python Runtime",
-      "file_type": "rationale",
-      "rationale": "BullMQ is Node-first and MarkItDown is Python-only, so the orchestrator is a Node/TypeScript worker with a Python FastAPI conversion sidecar (D1/D3).",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "hybrid node + python runtime",
-      "community_name": "Document Index",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_runtime"
-    },
-    {
-      "label": "Delegated Device-Code Auth",
-      "file_type": "concept",
-      "rationale": "One-time device-code bootstrap into an encrypted persistent MSAL cache with silent refresh thereafter; failure becomes an AUTH_REQUIRED health state rather than a crash loop (D2). Work/school OneDrive owned by the signing-in user, so scopes are Files.Read offline_access User.Read against /me/drive.",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 3,
-      "norm_label": "delegated device-code auth",
-      "community_name": "P0+P1 Implementation Plan",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_delegated_auth"
-    },
-    {
-      "label": "BullMQ Queues (sync + files)",
-      "file_type": "concept",
-      "rationale": "sync queue at concurrency 1 is a correctness invariant; files queue defaults to 4 and is live-adjustable at runtime; at-least-once delivery with dedup IDs and idempotent writes (D6).",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
       "community": 2,
-      "norm_label": "bullmq queues (sync + files)",
+      "norm_label": "sparse-only degraded mode",
       "community_name": "Approved Spec Concepts",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bullmq_queues"
-    },
-    {
-      "label": "MarkItDown Conversion Sidecar",
-      "file_type": "concept",
-      "rationale": "One endpoint POST /convert; OCR on by default, inline, with no budget machinery because the corpus is mostly digital PDFs with minimal images; near-empty conversions warn and count instead of blocking (D8, simplified per owner).",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "markitdown conversion sidecar",
-      "community_name": "Document Index",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_markitdown_converter"
-    },
-    {
-      "label": "Idempotent Writes (UUIDv5 Point IDs)",
-      "file_type": "concept",
-      "rationale": "Point IDs are UUIDv5 of driveId/itemId#chunkIndex, job dedup IDs are itemId:cTag, and the delta token advances only after enqueue - any crash or retry re-produces identical writes; per-file updates are delete-then-upsert (D7).",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "idempotent writes (uuidv5 point ids)",
-      "community_name": "Document Index",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_idempotency"
-    },
-    {
-      "label": "One Collection per Base Folder",
-      "file_type": "concept",
-      "rationale": "od_{slug} aliases over versioned physical collections, mapped by folder ID (rename-safe), with od__root as catch-all (D12); aliases make model or chunking changes a build-into-_v2-then-flip operation with zero downtime.",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "one collection per base folder",
-      "community_name": "Document Index",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_collection_per_base_folder"
-    },
-    {
-      "label": "Change Classification",
-      "file_type": "concept",
-      "rationale": "Delta items map to typed actions: new or changed content to process-file; rename or move within a base folder to update-metadata (payload patch only, no re-embedding); move across base folders to re-route (index new, purge old); file delete, folder delete (one ancestor_ids filter), and base-folder delete drops the whole collection plus catalog entry.",
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 3,
-      "norm_label": "change classification",
-      "community_name": "P0+P1 Implementation Plan",
-      "id": "docs_superpowers_specs_2026_07_26_vector_syncer_design_change_classification"
+      "id": "docs_features_searching_from_your_app_sparse_only_fallback"
     },
     {
       "label": "AES-256-GCM Cache Codec",
@@ -2037,9 +2035,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 3,
       "norm_label": "converter /healthz endpoint",
-      "community_name": "Document Index",
+      "community_name": "P0+P1 Implementation Plan",
       "id": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_healthz"
     },
     {
@@ -2056,233 +2054,86 @@
       "norm_label": "phase-1 delta spike",
       "community_name": "P0+P1 Implementation Plan",
       "id": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_phase_1_spike"
-    },
-    {
-      "label": "Repository State",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 11,
-      "norm_label": "repository state",
-      "community_name": "Repository State",
-      "id": "claude_md_repository_state"
-    },
-    {
-      "label": "Design Documents",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 10,
-      "norm_label": "design documents",
-      "community_name": "Conversation Store",
-      "id": "claude_md_design_docs"
-    },
-    {
-      "label": "Spec Document",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 10,
-      "norm_label": "spec document",
-      "community_name": "Conversation Store",
-      "id": "claude_md_spec_doc"
-    },
-    {
-      "label": "Implementation Plans",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 10,
-      "norm_label": "implementation plans",
-      "community_name": "Conversation Store",
-      "id": "claude_md_implementation_plans"
-    },
-    {
-      "label": "Vector Syncer Worker",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "vector syncer worker",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_vector_syncer_worker"
-    },
-    {
-      "label": "OneDrive Integration",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "onedrive integration",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_onedrive_integration"
-    },
-    {
-      "label": "Qdrant Collections",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "qdrant collections",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_qdrant_collections"
-    },
-    {
-      "label": "Embedding Model",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "embedding model",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_embedding_model"
-    },
-    {
-      "label": "BM25 Sparse Encoder",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "bm25 sparse encoder",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_bm25_sparse_encoder"
-    },
-    {
-      "label": "Redis and BullMQ",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "redis and bullmq",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_redis_bullmq"
-    },
-    {
-      "label": "Consistency Machinery",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "consistency machinery",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_consistency_machinery"
-    },
-    {
-      "label": "Security and Secrets",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "security and secrets",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_security_secrets"
-    },
-    {
-      "label": "Worker Package",
-      "file_type": "code",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "worker package",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_worker_package"
-    },
-    {
-      "label": "Converter Package",
-      "file_type": "code",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "converter package",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_converter_package"
-    },
-    {
-      "label": "Graphify Tool",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 7,
-      "norm_label": "graphify tool",
-      "community_name": "Hybrid Search & Consumer Contract",
-      "id": "claude_md_graphify_tool"
-    },
-    {
-      "label": "Process Rules",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 10,
-      "norm_label": "process rules",
-      "community_name": "Conversation Store",
-      "id": "claude_md_process_rules"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude",
+      "target": "claude_claude_md"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_graphify"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_non_negotiable_design_constraints"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_package_managers_commands"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_process_rules"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_repository_state"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_what_this_builds"
+    },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
@@ -2303,6 +2154,17 @@
       "_origin": "ast",
       "source": "readme",
       "target": "docs_design_05_conversion_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme",
+      "target": "docs_design_06_qdrant_design",
       "confidence_score": 1.0
     },
     {
@@ -2402,6 +2264,17 @@
       "_origin": "ast",
       "source": "docs_design_03_tech_stack",
       "target": "docs_design_05_conversion_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/03-tech-stack.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_03_tech_stack",
+      "target": "docs_design_06_qdrant_design",
       "confidence_score": 1.0
     },
     {
@@ -2551,7 +2424,18 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L97",
+      "source_location": "L119",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_05_conversion_pipeline",
+      "target": "docs_design_06_qdrant_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/05-conversion-pipeline.md",
+      "source_location": "L98",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_05_conversion_pipeline",
@@ -2573,7 +2457,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L76",
+      "source_location": "L77",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_05_conversion_pipeline_05_conversion_pipeline_markitdown_ocr_chunking_embeddings",
@@ -2584,7 +2468,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L86",
+      "source_location": "L87",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_05_conversion_pipeline_05_conversion_pipeline_markitdown_ocr_chunking_embeddings",
@@ -2595,7 +2479,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L99",
+      "source_location": "L100",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_05_conversion_pipeline_05_conversion_pipeline_markitdown_ocr_chunking_embeddings",
@@ -2606,7 +2490,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L120",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_05_conversion_pipeline_05_conversion_pipeline_markitdown_ocr_chunking_embeddings",
@@ -2617,7 +2501,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/05-conversion-pipeline.md",
-      "source_location": "L158",
+      "source_location": "L159",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_05_conversion_pipeline_05_conversion_pipeline_markitdown_ocr_chunking_embeddings",
@@ -2644,6 +2528,171 @@
       "_origin": "ast",
       "source": "docs_design_05_conversion_pipeline_1_converter_service_python_sidecar",
       "target": "docs_design_05_conversion_pipeline_implementation_sketch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_06_qdrant_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/08-configuration-and-deployment.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_08_configuration_and_deployment",
+      "target": "docs_design_06_qdrant_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/10-decisions-and-risks.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_10_decisions_and_risks",
+      "target": "docs_design_06_qdrant_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L208",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_10_consumer_owned_collections_the_conversation_store_user_addition_2026_07_26",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_1_collection_layout_one_per_base_folder_decision_d12",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_2_point_ids_deterministic_idempotent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_3_payload_schema_document_collections",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_4_write_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L125",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_5_delete_paths_fr_15_onedrive_deletion_qdrant_deletion_always",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_6_the_catalog_collection_od_catalog_decision_d13",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L163",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_7_reconcile_rebuild_model_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L170",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_8_what_consumers_do_reference_queries",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L199",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_06_qdrant_design",
+      "target": "docs_design_06_qdrant_design_9_future_beyond_bm25_hybrid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_1_collection_layout_one_per_base_folder_decision_d12",
+      "target": "docs_design_06_qdrant_design_creation_per_collection_on_demand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/design/06-qdrant-design.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_design_06_qdrant_design_1_collection_layout_one_per_base_folder_decision_d12",
+      "target": "docs_design_06_qdrant_design_naming_mapping",
       "confidence_score": 1.0
     },
     {
@@ -2683,7 +2732,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L39",
+      "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_08_configuration_and_deployment_08_configuration_deployment",
@@ -2694,7 +2743,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L80",
+      "source_location": "L81",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_08_configuration_and_deployment_08_configuration_deployment",
@@ -2705,7 +2754,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L127",
+      "source_location": "L128",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_08_configuration_and_deployment_08_configuration_deployment",
@@ -2716,7 +2765,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L139",
+      "source_location": "L140",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_08_configuration_and_deployment_08_configuration_deployment",
@@ -2727,7 +2776,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/design/08-configuration-and-deployment.md",
-      "source_location": "L156",
+      "source_location": "L157",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_design_08_configuration_and_deployment_08_configuration_deployment",
@@ -2790,6 +2839,127 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L106",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_10_top_risks_register_docs_design_10_decisions_and_risks_md_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_1_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_2_confirmed_decisions_owner_validated_2026_07_26",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_3_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_4_key_mechanisms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_5_payload_what_a_point_carries",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_6_error_handling_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_7_testing_strategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_8_mvp_acceptance_criteria",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_vector_syncer_design_specification",
+      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_9_implementation_phases",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "cites",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -2797,16 +2967,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "docs_design_04_onedrive_graph_integration",
-      "target": "docs_design_01_requirements"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design",
       "target": "docs_design_01_requirements"
     },
     {
@@ -2850,16 +3010,6 @@
       "target": "docs_design_01_requirements"
     },
     {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_design_01_requirements"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -2897,16 +3047,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_classifypage",
-      "target": "docs_design_02_architecture"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
       "target": "docs_design_02_architecture"
     },
     {
@@ -2958,56 +3098,6 @@
       "weight": 1.0,
       "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_phase_1_spike",
       "target": "docs_design_04_onedrive_graph_integration"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/09-roadmap.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_09_roadmap",
-      "target": "docs_design_06_qdrant_design"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/features/collection-discovery.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_collection_discovery",
-      "target": "docs_design_06_qdrant_design"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/features/conversation-store.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_conversation_store",
-      "target": "docs_design_06_qdrant_design"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/features/searching-from-your-app.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_searching_from_your_app",
-      "target": "docs_design_06_qdrant_design"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_design_06_qdrant_design"
     },
     {
       "relation": "cites",
@@ -3067,16 +3157,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "docs_design_02_architecture_worker",
-      "target": "docs_design_06_qdrant_design_qdrant"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/02-architecture.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_02_architecture_worker",
       "target": "docs_design_07_bullmq_design_bullmq"
     },
     {
@@ -3108,46 +3188,6 @@
       "weight": 1.0,
       "source": "docs_design_07_bullmq_design_bullmq",
       "target": "docs_design_07_bullmq_design_redis"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_collection_per_base_folder",
-      "target": "docs_design_06_qdrant_design_qdrant"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_design_06_qdrant_design_qdrant"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_collection_per_base_folder",
-      "target": "docs_design_06_qdrant_design_qdrant"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_search",
-      "target": "docs_design_06_qdrant_design_qdrant"
     },
     {
       "relation": "conceptually_related_to",
@@ -3207,26 +3247,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "docs_features_onedrive_sync_delta_query",
-      "target": "docs_design_04_onedrive_graph_integration_microsoft_graph"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_design_04_onedrive_graph_integration_microsoft_graph"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_delegated_auth",
       "target": "docs_design_04_onedrive_graph_integration_microsoft_graph"
     },
     {
@@ -3316,16 +3336,6 @@
       "source_file": "docs/design/07-bullmq-design.md",
       "source_location": null,
       "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_od_catalog",
-      "target": "docs_design_07_bullmq_design_files_queue"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/07-bullmq-design.md",
-      "source_location": null,
-      "weight": 1.0,
       "source": "docs_design_07_bullmq_design_adjustable_concurrency",
       "target": "docs_design_07_bullmq_design_files_queue"
     },
@@ -3348,86 +3358,6 @@
       "weight": 1.0,
       "source": "docs_design_07_bullmq_design_rate_limiting",
       "target": "docs_design_07_bullmq_design_files_queue"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/07-bullmq-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_07_bullmq_design_job_scheduler",
-      "target": "docs_design_06_qdrant_design_weekly_reconcile"
-    },
-    {
-      "relation": "shares_data_with",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_02_architecture_sync_state",
-      "target": "docs_design_06_qdrant_design_od_catalog"
-    },
-    {
-      "relation": "shares_data_with",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_od_catalog",
-      "target": "docs_design_06_qdrant_design_collection_per_base_folder"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_conversation_store",
-      "target": "docs_design_06_qdrant_design_bm25_v1_encoder"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_conversation_store",
-      "target": "docs_design_06_qdrant_design_collection_per_base_folder"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_shared_consumer_package",
-      "target": "docs_design_06_qdrant_design_conversation_store"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_shared_consumer_package",
-      "target": "docs_design_06_qdrant_design_bm25_v1_encoder"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/09-roadmap.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_09_roadmap_implementation_phases",
-      "target": "docs_design_06_qdrant_design_shared_consumer_package"
     },
     {
       "relation": "conceptually_related_to",
@@ -3470,16 +3400,6 @@
       "target": "docs_design_04_onedrive_graph_integration_delta_query"
     },
     {
-      "relation": "shares_data_with",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/04-onedrive-graph-integration.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_04_onedrive_graph_integration_delta_query",
-      "target": "docs_design_06_qdrant_design_payload_schema"
-    },
-    {
       "relation": "conceptually_related_to",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -3510,16 +3430,6 @@
       "target": "docs_design_04_onedrive_graph_integration_delta_classification"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_weekly_reconcile",
-      "target": "docs_design_04_onedrive_graph_integration_resync_410_gone"
-    },
-    {
       "relation": "implements",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -3538,76 +3448,6 @@
       "weight": 1.0,
       "source": "docs_design_07_bullmq_design_deduplication",
       "target": "docs_design_04_onedrive_graph_integration_ctag"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_alias_flip_rebuild",
-      "target": "docs_design_06_qdrant_design_collection_per_base_folder"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_payload_schema",
-      "target": "docs_design_06_qdrant_design_collection_per_base_folder"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_delete_then_upsert",
-      "target": "docs_design_06_qdrant_design_deterministic_point_ids"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_deterministic_point_ids",
-      "target": "docs_design_01_requirements_idempotency"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/design/07-bullmq-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_07_bullmq_design_deduplication",
-      "target": "docs_design_06_qdrant_design_deterministic_point_ids"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/design/06-qdrant-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_06_qdrant_design_hybrid_rrf_search",
-      "target": "docs_design_06_qdrant_design_bm25_v1_encoder"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/design/01-requirements.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_design_01_requirements_source_of_truth",
-      "target": "docs_design_06_qdrant_design_alias_flip_rebuild"
     },
     {
       "relation": "conceptually_related_to",
@@ -3677,16 +3517,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation",
-      "target": "docs_design_09_roadmap_implementation_phases"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
       "target": "docs_design_09_roadmap_implementation_phases"
     },
     {
@@ -4050,16 +3880,6 @@
       "target": "docs_features_searching_from_your_app_sparse_only_fallback"
     },
     {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/features/searching-from-your-app.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_searching_from_your_app",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_search"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -4230,106 +4050,6 @@
       "target": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_walkdelta"
     },
     {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/plans/2026-07-26-vector-syncer-p0-p1-foundation.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bm25_v1"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bullmq_queues"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_change_classification"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_collection_per_base_folder"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_delegated_auth"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_runtime"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_search"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_idempotency"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_markitdown_converter"
-    },
-    {
       "relation": "references",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
@@ -4423,36 +4143,6 @@
       "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
-      "source_file": "docs/features/conversation-store.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_conversation_store_appendturn",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_idempotency"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/features/conversation-store.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_conversation_store_searchturns",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_search"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/features/searching-from-your-app.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_searching_from_your_app_consumer_package",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bm25_v1"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
       "source_file": "docs/features/operations.md",
       "source_location": null,
       "weight": 1.0,
@@ -4468,16 +4158,6 @@
       "weight": 1.0,
       "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_walkdelta",
       "target": "docs_features_onedrive_sync_delta_query"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/features/onedrive-sync.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_onedrive_sync_base_folder_mapping",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_collection_per_base_folder"
     },
     {
       "relation": "rationale_for",
@@ -4510,36 +4190,6 @@
       "target": "docs_features_operations_bull_board"
     },
     {
-      "relation": "references",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/features/operations.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_operations_bull_board",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bullmq_queues"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/features/operations.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_operations_manual_sync_trigger",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bullmq_queues"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/features/operations.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_operations_live_concurrency",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bullmq_queues"
-    },
-    {
       "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
@@ -4558,56 +4208,6 @@
       "weight": 1.0,
       "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_cliauth",
       "target": "docs_features_operations_auth_required"
-    },
-    {
-      "relation": "references",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/features/searching-from-your-app.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_features_searching_from_your_app_sparse_only_fallback",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bm25_v1"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/superpowers/specs/2026-07-26-vector-syncer-design.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_specs_2026_07_26_vector_syncer_design_hybrid_search",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_bm25_v1"
-    },
-    {
-      "relation": "implements",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/superpowers/plans/2026-07-26-vector-syncer-p0-p1-foundation.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_createmsalapp",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_delegated_auth"
-    },
-    {
-      "relation": "implements",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/superpowers/plans/2026-07-26-vector-syncer-p0-p1-foundation.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_healthz",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_markitdown_converter"
-    },
-    {
-      "relation": "implements",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/superpowers/plans/2026-07-26-vector-syncer-p0-p1-foundation.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_classifypage",
-      "target": "docs_superpowers_specs_2026_07_26_vector_syncer_design_change_classification"
     },
     {
       "relation": "calls",
@@ -4758,169 +4358,8 @@
       "weight": 1.0,
       "source": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_phase_1_spike",
       "target": "docs_superpowers_plans_2026_07_26_vector_syncer_p0_p1_foundation_devdelta"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_design_docs",
-      "target": "claude_md_implementation_plans"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_spec_doc",
-      "target": "claude_md_design_docs"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_process_rules",
-      "target": "claude_md_implementation_plans"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_converter_package",
-      "target": "claude_md_vector_syncer_worker"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_graphify_tool",
-      "target": "claude_md_vector_syncer_worker"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_vector_syncer_worker",
-      "target": "claude_md_bm25_sparse_encoder"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_vector_syncer_worker",
-      "target": "claude_md_consistency_machinery"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_vector_syncer_worker",
-      "target": "claude_md_embedding_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_vector_syncer_worker",
-      "target": "claude_md_onedrive_integration"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_vector_syncer_worker",
-      "target": "claude_md_qdrant_collections"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_vector_syncer_worker",
-      "target": "claude_md_redis_bullmq"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_vector_syncer_worker",
-      "target": "claude_md_security_secrets"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_worker_package",
-      "target": "claude_md_vector_syncer_worker"
     }
   ],
-  "hyperedges": [
-    {
-      "id": "vector_syncer_components",
-      "label": "Vector Syncer Core Components",
-      "nodes": [
-        "claude_md_onedrive_integration",
-        "claude_md_qdrant_collections",
-        "claude_md_embedding_model",
-        "claude_md_bm25_sparse_encoder",
-        "claude_md_redis_bullmq",
-        "claude_md_consistency_machinery",
-        "claude_md_security_secrets"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md"
-    },
-    {
-      "id": "document_hierarchy",
-      "label": "Document Hierarchy",
-      "nodes": [
-        "claude_md_spec_doc",
-        "claude_md_design_docs",
-        "claude_md_implementation_plans"
-      ],
-      "relation": "form",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md"
-    }
-  ],
-  "built_at_commit": "0bb7ac414086f2755cd1786e7ab95c32cd57d88d"
+  "hyperedges": [],
+  "built_at_commit": "def03258a594f7927a95bf7e70c48808d731112a"
 }

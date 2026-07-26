@@ -20,6 +20,7 @@ vector-syncer/
 │   └── src/
 │       ├── index.ts               # boot: config → queues → schedulers → workers → fastify
 │       ├── config.ts              # zod-validated env
+│       ├── prompts.ts             # compile-once loader for ../prompts/*.hbs — typed render fns, the only Handlebars touchpoint (D16)
 │       ├── auth/                  # msal.ts, encryptedCachePlugin.ts, cli-auth.ts (device code)
 │       ├── graph/                 # client.ts, delta.ts, download.ts, types.ts
 │       ├── queues/                # queues.ts, schedulers.ts
