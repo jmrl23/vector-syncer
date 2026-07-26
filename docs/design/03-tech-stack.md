@@ -16,7 +16,7 @@
 | Sparse vectors (hybrid) | **custom BM25 encoder** in the worker (`bm25-v1`) | in-repo, no dependency | ~100 lines: unicode tokenize → FNV-1a `u32` → BM25 TF weights; IDF server-side via Qdrant `modifier: idf`; shared with the consumer app for query encoding ([06](06-qdrant-design.md) §4) |
 | OCR | **markitdown-ocr plugin** driven by **`Qwen/Qwen3-VL-235B-A22B-Instruct`** on DeepInfra | — | Vision-LLM OCR of images embedded in PDF/DOCX/PPTX/XLSX; Azure DocIntel / local Tesseract kept as fallbacks — [05](05-conversion-pipeline.md) §3 |
 | LLM (descriptions etc.) | **`deepseek-ai/DeepSeek-V4-Flash`** on DeepInfra | — | Generates catalog collection descriptions ([06](06-qdrant-design.md) §6); available for future summarization needs |
-| Chunking | **@langchain/textsplitters** + **js-tiktoken** | latest | Markdown-aware recursive splitting with a token-accurate length function; small dependency, replaceable by a custom splitter later |
+| Chunking | **@langchain/textsplitters** + **@huggingface/transformers** (tokenizer only) | latest | Markdown-aware recursive splitting measured with the *actual* bge-m3 tokenizer (`AutoTokenizer`, D15) — exact counts against what the embedder sees, not an OpenAI-BPE proxy; replaceable by a custom splitter later |
 | Vector DB | **Qdrant** + **@qdrant/js-client-rest** | server 1.15+, client matching | User requirement; payload filtering, payload indexes, aliases for zero-downtime reindex |
 | HTTP client (worker) | native `fetch` / `undici` | Node built-in | Streaming downloads; no extra dep |
 | Config | **dotenv** + **zod** | latest | Fail-fast validated env schema |
@@ -64,7 +64,7 @@ bullmq                          queue, scheduler, workers
 @qdrant/js-client-rest          Qdrant client
 openai                          OpenAI SDK → DeepInfra (bge-m3 embeddings, DeepSeek catalog descriptions)
 @langchain/textsplitters        markdown-aware chunking
-js-tiktoken                     token counting for chunk sizing
+@huggingface/transformers       AutoTokenizer — exact bge-m3 token counts for chunk sizing (tokenizer files only, no model weights)
 uuid                            UUIDv5 deterministic point ids
 zod + dotenv                    config validation
 pino                            logging

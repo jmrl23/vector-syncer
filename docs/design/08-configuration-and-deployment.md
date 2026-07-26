@@ -56,6 +56,7 @@ vector-syncer/
 | `OPENAI_API_KEY` | — (required) | the OpenAI SDK's native var — set to the DeepInfra token; one key for embeddings + OCR + descriptions |
 | `OPENAI_BASE_URL` | `https://api.deepinfra.com/v1/openai` | the SDK's native var — **any** OpenAI-compatible provider slots in here; nothing provider-specific in code |
 | `EMBEDDING_MODEL` | `BAAI/bge-m3` | served by DeepInfra |
+| `EMBEDDING_TOKENIZER` | `Xenova/bge-m3` | HF repo the chunker loads the *exact* embedding tokenizer from (`AutoTokenizer`, D15); must match `EMBEDDING_MODEL` — swap them together |
 | `EMBEDDING_DIMENSIONS` | `1024` | must match model & every collection |
 | `EMBEDDING_BATCH_SIZE` | `64` | texts per embeddings call |
 | `SPARSE_MODE` | `bm25` | hybrid sparse writes via the `bm25-v1` encoder ([06](06-qdrant-design.md) §4); `off` = dense-only fallback |
@@ -70,7 +71,7 @@ vector-syncer/
 | `BULL_BOARD_PORT` | `3001` | dashboard + `/health` |
 | `LOG_LEVEL` | `info` | |
 
-The three model IDs above (`EMBEDDING_MODEL`, `OCR_LLM_MODEL`, `LLM_MODEL`) are **initial preferences, not commitments** — any model served by the endpoint in `OPENAI_BASE_URL` works. Swapping the OCR or LLM model is free at any time; swapping the embedding model changes dimensions and therefore means a collection rebuild ([06](06-qdrant-design.md) §7) — finalize it before the first full backfill.
+The three model IDs above (`EMBEDDING_MODEL`, `OCR_LLM_MODEL`, `LLM_MODEL`) are **initial preferences, not commitments** — any model served by the endpoint in `OPENAI_BASE_URL` works. Swapping the OCR or LLM model is free at any time; swapping the embedding model changes dimensions and therefore means a collection rebuild ([06](06-qdrant-design.md) §7) — finalize it before the first full backfill. An embedding swap also means updating `EMBEDDING_TOKENIZER` to the new model's tokenizer repo in the same change (D15): chunk budgets are measured with that tokenizer, and it must always match the model that embeds the chunks.
 
 Secrets (`MSAL_CACHE_KEY`, `OPENAI_API_KEY`, `DOCINTEL_KEY`, `QDRANT_API_KEY`) come from `.env` (0600, gitignored) in v1; anything fancier (sops, vault) is a deploy-target question (Q5).
 

@@ -95,7 +95,7 @@ Practical fidelity notes (set expectations for retrieval quality):
 
 Converter returns whole-document Markdown; the worker chunks it. Defaults: **target 512 tokens, overlap 64, min 20** (env-tunable).
 
-Algorithm (heading-aware, token-measured via js-tiktoken; `@langchain/textsplitters` recursive splitter with markdown separators as the base implementation):
+Algorithm (heading-aware, token-measured with the **embedding model's own tokenizer** — `@huggingface/transformers` `AutoTokenizer`, D15; `@langchain/textsplitters` recursive splitter with markdown separators as the base implementation):
 
 1. Split at heading boundaries (`#`–`####`), maintaining the heading stack per section.
 2. Pack adjacent small sibling sections into one chunk up to the token target; split oversized sections at paragraph → sentence boundaries with the 64-token overlap.
@@ -110,7 +110,7 @@ Algorithm (heading-aware, token-measured via js-tiktoken; `@langchain/textsplitt
 
 The payload stores the raw `text` and `heading_path` separately, so the breadcrumb aids retrieval without polluting displayed text.
 
-Token sizing uses js-tiktoken as a *proxy*: bge-m3 tokenizes with XLM-RoBERTa's sentencepiece vocabulary, so true counts differ by roughly ±20 %. Irrelevant in practice — 512-token chunks sit far below the model's 8 192-token input ceiling.
+Token sizing is **exact, not a proxy** (D15, 2026-07-27 — supersedes the earlier js-tiktoken plan): the worker loads the embedding model's actual tokenizer via `@huggingface/transformers` (`AutoTokenizer.from_pretrained(env.EMBEDDING_TOKENIZER)`, default `Xenova/bge-m3` = bge-m3's XLM-RoBERTa sentencepiece vocabulary) and measures chunks with `tokenizer.encode(text).length`, so budgets are counted in the same tokens the embedder consumes. `EMBEDDING_TOKENIZER` travels with `EMBEDDING_MODEL`: swapping the embedding model swaps the tokenizer inside the same rebuild ([06](06-qdrant-design.md) §7). Tokenizer files download from the HF Hub once and cache locally (`env.cacheDir`); for offline/deterministic builds, vendor them and set `env.allowRemoteModels = false`. This is local tokenization code, not an AI call — D11's OpenAI-SDK-only rule is untouched.
 
 ## 5. Embeddings — `BAAI/bge-m3` via DeepInfra (OpenAI SDK)
 
