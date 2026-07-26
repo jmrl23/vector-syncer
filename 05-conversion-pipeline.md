@@ -20,6 +20,7 @@ POST /convert  (multipart/form-data)
   "title":       "…" | null,
   "converter":   "PdfConverter",   # which MarkItDown converter fired (diagnostics)
   "ocr_used":    false,
+  "ocr_images":  0,                # images sent to the vision model for this file
   "warnings":    [],
   "elapsed_ms":  843
 }
@@ -88,7 +89,7 @@ Practical fidelity notes (set expectations for retrieval quality):
 | Azure Document Intelligence | `DOCINTEL_ENDPOINT` | full layout OCR via `docintel_endpoint` — structured Markdown | ~$1.50 / 1k pages (*verify*) | fallback if Qwen3-VL underperforms on complex layouts |
 | local | pre-processing | `ocrmypdf`/Tesseract pass before MarkItDown | free, CPU-heavy | fully-offline fallback |
 
-**Empty-conversion warning** (worker-side): file is PDF or image AND `markdown.length / max(pageCount,1) < ~200 chars` ⇒ index nothing, log a warning, increment an `empty_conversion` counter on `/health`. That's the entire mechanism — a warning light, not a workflow. **No OCR budget machinery in v1** (user decision 2026-07-26: the corpus is mostly digital PDFs with minimal images, so OCR volume is naturally small and runs inline). If reality disagrees — the counter climbs or the first invoice surprises — the documented add-backs are a per-cycle image cap and a targeted re-process status, both small ([10](10-decisions-and-risks.md) risk register). Bulk redo after an OCR/config change is `resync --rebuild [--collection …]`.
+**Empty-conversion warning** (worker-side): file is PDF or image AND `markdown.length / max(pageCount,1) < ~200 chars` ⇒ index nothing, log a warning, increment an `empty_conversion` counter on `/health`. That's the entire mechanism — a warning light, not a workflow. **No OCR budget machinery in v1** (user decision 2026-07-26: the corpus is mostly digital PDFs with minimal images, so OCR volume is naturally small and runs inline). If reality disagrees — the counter climbs or the first invoice surprises — the documented add-backs are a per-cycle image cap and a targeted re-process status, both small ([10](10-decisions-and-risks.md) risk register). Bulk redo after an OCR/config change is `resync --rebuild [--collection …]`. For volume visibility, the converter reports `ocr_images` per file and the worker aggregates an **`ocr_images_processed`** counter on `/health` — OCR spend is observable long before the invoice (user-approved addition, 2026-07-26).
 
 ## 4. Chunking (worker-side, TypeScript)
 

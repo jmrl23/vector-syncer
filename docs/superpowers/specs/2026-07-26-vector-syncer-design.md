@@ -58,7 +58,7 @@ Four services in one compose stack + two external APIs (Microsoft Graph; the Ope
 - **Idempotency:** point IDs = UUIDv5(`driveId/itemId#chunkIndex`); job dedup IDs = `itemId:cTag`; delta token advances only after enqueue. Any crash/retry re-produces identical writes.
 - **Rate limits:** Graph/provider 429 → `worker.rateLimit(retryAfter)` + `Worker.RateLimitError` (attempt not consumed); 5xx → exponential backoff (4 attempts) → visible failed set. Poison files never block the pipeline.
 - **Auth failure:** silent-refresh failure flips `/health` to `AUTH_REQUIRED`; re-auth is a 2-minute device-code login; queued work resumes untouched.
-- **Empty conversions:** a PDF/image yielding almost no Markdown is skipped with a warning + `empty_conversion` counter — a warning light, not a workflow.
+- **Empty conversions & OCR volume:** a PDF/image yielding almost no Markdown is skipped with a warning + `empty_conversion` counter; the converter reports `ocr_images` per file, aggregated into an `ocr_images_processed` counter on `/health`, so OCR volume is visible before the invoice. Warning lights, not workflows.
 - **Live ops:** manual sync trigger (`cli.js sync`, serializes behind any running walk); live files-worker concurrency (`cli.js concurrency <n>`, BullMQ public setter, no restart); pause/resume; `resync [--rebuild [--collection X]] [--catalog]`.
 - **Rebuilds:** aliases over versioned physical collections make model/chunking changes a build-into-`_v2`-then-flip operation, zero downtime.
 - **Sparse encoder contract:** `bm25-v1` (unicode tokenize → lowercase → FNV-1a u32 → BM25 TF saturation k1=1.2 b=0.75 avgLen=256; IDF server-side) ships as an importable module; the consumer app must use it for query encoding; `sparse_encoder` recorded per point catches drift; encoder bump = sparse-only backfill.
@@ -106,6 +106,6 @@ Every failure mode maps to one of: **retry with backoff** (transient network/5xx
 1. **Refresh-token death is silent** at the source — mitigated by first-class `AUTH_REQUIRED` health + runbook; wire `/health` to an uptime monitor day one.
 2. **Delta edge cases are assumptions** until the Phase-1 spike; weekly reconcile backstops correctness regardless.
 3. **Embedding model choice is the one expensive commitment** (change = re-index); everything else is env-swappable.
-4. **Image-light corpus assumption** removed the OCR budget machinery — `empty_conversion` counter + first invoice are the review triggers; add-backs documented.
+4. **Image-light corpus assumption** removed the OCR budget machinery — `ocr_images_processed` + `empty_conversion` counters and the first invoice are the review triggers; add-backs documented.
 5. **Sparse-encoder drift** between indexer and app would silently degrade hybrid recall — app confirmed Node/TS, so it imports the exact versioned module (no reimplementation); golden-vector tests + per-point `sparse_encoder` field.
 6. **Provider dependency** (outage/model retirement) — queues drain on recovery; models pinned in env; self-host switch-back documented.

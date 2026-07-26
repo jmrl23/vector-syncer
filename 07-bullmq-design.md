@@ -124,7 +124,7 @@ Permanent failures (unsupported format already classified, file gone) throw `Unr
 ```json
 { "status": "ok", "auth": "valid", "lastSyncAt": "...", "lastSyncChanges": 3,
   "queues": { "files": { "waiting": 0, "failed": 2 } },
-  "files": { "indexed": 1240, "empty_conversion": 2, "skipped_unsupported": 30 } }
+  "files": { "indexed": 1240, "empty_conversion": 2, "skipped_unsupported": 30, "ocr_images_processed": 57 } }
 ```
 
 - Failed-set size > threshold or sync stale > 3× interval ⇒ log at `error` (hookable to any alerting later).

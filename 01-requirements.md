@@ -76,7 +76,7 @@ Documents that a team (or individual) maintains in a OneDrive folder should be c
 | NFR-4 | **Cost control** | No re-embedding of unchanged content; batched embedding calls; OCR runs inline on an image-light corpus (user 2026-07-26) with `OCR_LLM_MODEL=` (empty) as the kill switch |
 | NFR-5 | **Security** | Least-privilege delegated scopes; token cache encrypted at rest (AES-256-GCM); Redis/Qdrant not exposed publicly; scratch files deleted after processing; document content is shared with exactly two external parties — Microsoft Graph (source) and DeepInfra (AI provider, by decision D11) |
 | NFR-6 | **Recoverability** | Qdrant and Redis are both rebuildable from OneDrive (source of truth); losing the delta token only costs a re-enumeration, not re-embedding (hash-skip) |
-| NFR-7 | **Observability** | Per-job logs with file path + duration; counters for processed/skipped/failed/empty_conversion; last-sync timestamp gauge |
+| NFR-7 | **Observability** | Per-job logs with file path + duration; counters for processed/skipped/failed/empty_conversion/ocr_images_processed; last-sync timestamp gauge |
 | NFR-8 | **Portability** | Everything runs via `docker compose` on any Linux host; external dependencies are exactly two: Microsoft Graph and DeepInfra |
 | NFR-9 | **Rate-limit compliance** | Honor `Retry-After` on Graph 429s; global concurrency caps; single delta walk at a time |
 
