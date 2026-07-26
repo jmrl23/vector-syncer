@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Planning-complete, pre-code.** This repo currently holds an owner-approved design; implementation hasn't started. Document hierarchy (highest authority first):
 
 1. `docs/superpowers/specs/2026-07-26-vector-syncer-design.md` — the approved spec. **Where the spec and a design doc disagree, the spec wins and the doc should be fixed.**
-2. `docs/design/01…10-*.md` — deep design per area (requirements, architecture, tech stack, Graph integration, conversion, Qdrant, BullMQ, config/deploy, roadmap, decisions/risks). `10-decisions-and-risks.md` is the decision log — don't re-litigate D1–D14 without the owner.
+2. `docs/design/01…10-*.md` — deep design per area (requirements, architecture, tech stack, Graph integration, conversion, Qdrant, BullMQ, config/deploy, roadmap, decisions/risks). `10-decisions-and-risks.md` is the decision log — don't re-litigate D1–D16 without the owner.
 3. `docs/features/*.md` — usage guides (consumer contract lives here and in `docs/design/06` §8/§10).
 4. `docs/superpowers/plans/` — implementation plans. Execution is a **plan series**: `…-p0-p1-foundation.md` exists (14 TDD tasks); plans for P2–P5 are written only at each phase boundary, because the Phase-1 spike findings (recorded into `docs/design/04` §4) feed later phases.
 
@@ -18,6 +18,7 @@ A worker that mirrors one OneDrive folder (delegated device-code auth, Graph del
 ## Non-negotiable design constraints
 
 - **AI access only through the official OpenAI SDK**, configured via its native `OPENAI_BASE_URL`/`OPENAI_API_KEY`; every model ID is its own env var. Nothing provider-specific in code (DeepInfra is a config value).
+- **LLM prompt text never lives in source code** (owner rule, 2026-07-27): every system/instruction prompt is a `.hbs` Handlebars template under `worker/prompts/` or `converter/prompts/`, loaded — and rendered, when it has variables — at runtime (D16).
 - Swapping the **embedding model means a full re-index** (alias-flip rebuild); OCR/description models swap freely. Query embedding must always match the indexing model.
 - The worker creates/writes/drops **only** `od_*` collections and `od_catalog`. Any other collection in the same Qdrant (e.g. `app_conversations`) is consumer-owned — never touch it from worker code.
 - The `bm25-v1` sparse encoder is **shared code with the consumer app** (imported, never reimplemented); changing it = version bump + sparse-only backfill, and golden-vector tests pin the encoding.
@@ -49,6 +50,7 @@ Two things always require the human owner: the Entra app registration + `yarn au
 - Implementation follows the plan tasks TDD-style (failing test → minimal code → pass → commit per task, conventional commits).
 - Verify library APIs with Context7 before writing integration code; README's Provenance section records what was verified on 2026-07-26 — anything tagged *"verify at implementation"* (mostly pricing/minor kwargs) must be re-checked when touched.
 - When implementation deviates from a design doc, update the doc in the same commit (spike findings go in `docs/design/04` §4 as regression-tested facts).
+- **Documentation code examples are TypeScript only** (owner rule, 2026-07-27) — never Python or another language. Shell commands / compose / config snippets stay `bash`/`yaml`/`toml`/`json`. Sole exception: the converter sidecar's own source embedded in design/plan docs is Python by spec (MarkItDown has no TS port) — don't rewrite those as TS pseudocode.
 
 ## graphify
 

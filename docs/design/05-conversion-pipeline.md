@@ -1,6 +1,6 @@
 # 05 — Conversion pipeline: MarkItDown, OCR, chunking, embeddings
 
-> Status: draft · Last updated: 2026-07-26
+> Status: draft · Last updated: 2026-07-27 (rev 2: OCR prompt externalized to converter/prompts/ocr-image.hbs — D16)
 
 ## 1. Converter service (Python sidecar)
 
@@ -35,6 +35,7 @@ GET /healthz → { "status": "ok", "ocr_tier": "none|docintel|llm" }
 ```python
 from fastapi import FastAPI, UploadFile, Form, HTTPException
 from markitdown import MarkItDown, StreamInfo
+from pathlib import Path
 import io, os
 
 app = FastAPI()
@@ -48,6 +49,8 @@ if os.getenv("OCR_LLM_MODEL"):                        # chosen: Qwen3-VL via Dee
         enable_plugins=True,                          # activates the markitdown-ocr plugin
         llm_client=OpenAI(),                          # reads OPENAI_BASE_URL / OPENAI_API_KEY (→ DeepInfra)
         llm_model=os.environ["OCR_LLM_MODEL"],        # Qwen/Qwen3-VL-235B-A22B-Instruct
+        llm_prompt=(Path(__file__).parent.parent      # prompt text ships as a template file,
+                    / "prompts" / "ocr-image.hbs").read_text(),   # never as a string in code (D16)
     )
 elif os.getenv("DOCINTEL_ENDPOINT"):                  # fallback tier: Azure Document Intelligence
     ocr = MarkItDown(docintel_endpoint=os.environ["DOCINTEL_ENDPOINT"])
@@ -88,6 +91,8 @@ Practical fidelity notes (set expectations for retrieval quality):
 | off | `OCR_LLM_MODEL=` (empty) | MarkItDown built-ins only; scanned docs convert to ~nothing and trip the empty-conversion warning | free | opt-out / kill switch if costs ever surprise |
 | Azure Document Intelligence | `DOCINTEL_ENDPOINT` | full layout OCR via `docintel_endpoint` — structured Markdown | ~$1.50 / 1k pages (*verify*) | fallback if Qwen3-VL underperforms on complex layouts |
 | local | pre-processing | `ocrmypdf`/Tesseract pass before MarkItDown | free, CPU-heavy | fully-offline fallback |
+
+The instruction the vision model receives is not hardcoded: it lives in **`converter/prompts/ocr-image.hbs`** (a static template — no variables — read once at startup and passed via MarkItDown's `llm_prompt` constructor kwarg, verified v0.1.6). OCR prompt wording is tuned by editing the template, never by a code change (D16).
 
 **Empty-conversion warning** (worker-side): file is PDF or image AND `markdown.length / max(pageCount,1) < ~200 chars` ⇒ index nothing, log a warning, increment an `empty_conversion` counter on `/health`. That's the entire mechanism — a warning light, not a workflow. **No OCR budget machinery in v1** (user decision 2026-07-26: the corpus is mostly digital PDFs with minimal images, so OCR volume is naturally small and runs inline). If reality disagrees — the counter climbs or the first invoice surprises — the documented add-backs are a per-cycle image cap and a targeted re-process status, both small ([10](10-decisions-and-risks.md) risk register). Bulk redo after an OCR/config change is `resync --rebuild [--collection …]`. For volume visibility, the converter reports `ocr_images` per file and the worker aggregates an **`ocr_images_processed`** counter on `/health` — OCR spend is observable long before the invoice (user-approved addition, 2026-07-26).
 

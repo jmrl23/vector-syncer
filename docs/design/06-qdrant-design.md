@@ -1,6 +1,6 @@
 # 06 — Qdrant design
 
-> Status: draft · Last updated: 2026-07-26 (rev 3: hybrid dense+sparse from day one · rev 2: collection-per-base-folder, catalog collection, bge-m3 @ DeepInfra)
+> Status: draft · Last updated: 2026-07-27 (rev 4: catalog-description prompt externalized to worker/prompts/catalog-description.hbs, D16 · rev 3: hybrid dense+sparse from day one · rev 2: collection-per-base-folder, catalog collection, bge-m3 @ DeepInfra)
 
 ## 1. Collection layout: one per base folder (decision D12)
 
@@ -153,7 +153,7 @@ A tiny registry — **one point per document collection** — so consumers (espe
 
 - **Point ID**: `uuidv5('catalog:' + baseFolderId)`. **Vector**: bge-m3 dense embedding of `"{name} — {description}"`, so "which collection covers travel reimbursements?" is itself a semantic query.
 - **Maintained by** `refresh-catalog` jobs: on collection creation (initial description), during weekly reconcile (stats always; description regenerated when the file set changed materially, e.g. >20 % churn), on base-folder delete (point removed), and on demand via `resync --catalog`.
-- The description prompt is a compact digest — folder name, file paths, and short excerpts from a sample of indexed chunks (user decision: rich catalog) — not whole documents, so regeneration stays fast and cheap.
+- The description prompt is a compact digest — folder name, file paths, and short excerpts from a sample of indexed chunks (user decision: rich catalog) — not whole documents, so regeneration stays fast and cheap. The prompt text itself is **not in source code**: it's a Handlebars template, `worker/prompts/catalog-description.hbs`, rendered with those signals as variables (`{{folder_name}}`, `{{file_paths}}`, `{{excerpts}}`) — D16.
 - **Consumer pattern — two first-class catalog operations** (code in §8):
   1. **Enumerate** — *"what collections do you have?"* is answered **completely and deterministically** by scrolling `od_catalog` (no vector search): every entry's name, description and stats come back, ready to render — or to hand to the app's LLM — as the answer.
   2. **Route** — *"which collection covers X?"* is a semantic search over the embedded descriptions → pick the top collection(s) → search there.

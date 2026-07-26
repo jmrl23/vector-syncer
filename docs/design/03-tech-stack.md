@@ -1,6 +1,6 @@
 # 03 — Tech stack
 
-> Status: draft · Last updated: 2026-07-26
+> Status: draft · Last updated: 2026-07-27
 
 ## 1. Summary
 
@@ -65,6 +65,7 @@ bullmq                          queue, scheduler, workers
 openai                          OpenAI SDK → DeepInfra (bge-m3 embeddings, DeepSeek catalog descriptions)
 @langchain/textsplitters        markdown-aware chunking
 @huggingface/transformers       AutoTokenizer — exact bge-m3 token counts for chunk sizing (tokenizer files only, no model weights)
+handlebars                      renders worker/prompts/*.hbs — all LLM prompt text lives in template files, never in code (D16)
 uuid                            UUIDv5 deterministic point ids
 zod + dotenv                    config validation
 pino                            logging
@@ -81,6 +82,8 @@ fastapi + uvicorn[standard]     HTTP wrapper
 python-multipart                multipart uploads
 openai                          markitdown llm_client → DeepInfra (Qwen3-VL OCR)
 markitdown-ocr                  OCR plugin (LLM-vision over embedded images)
+# OCR instruction text: converter/prompts/ocr-image.hbs — static template read at startup (stdlib pathlib,
+#   no templating dependency needed) and passed to MarkItDown's llm_prompt (D16)
 # fallback OCR tier: markitdown[all] already includes azure-ai-documentintelligence
 ```
 

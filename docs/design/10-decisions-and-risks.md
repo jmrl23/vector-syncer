@@ -1,6 +1,6 @@
 # 10 — Decisions, open questions, risks
 
-> Status: draft · Last updated: 2026-07-26
+> Status: draft · Last updated: 2026-07-27
 
 ## 1. Decision log (ADR-lite)
 
@@ -21,6 +21,7 @@
 | D13 | **Catalog collection** (`od_catalog`): one embedded point per document collection — name, DeepSeek-generated description, stats — enabling catalog-first routing | ✅ accepted (user) | Static config file (drifts from reality); no catalog (consumers must guess). Descriptions draw on names, paths **and** brief content excerpts (user choice: rich catalog) |
 | D14 | **Hybrid from day one**: every point carries `dense` (bge-m3 via provider) **and** `sparse` — a worker-computed BM25-style vector (`bm25-v1`: unicode tokenize → FNV-1a `u32` → TF saturation; IDF server-side via `modifier: idf`); queries use Query-API `prefetch` dense+sparse → **RRF fusion** ([06](06-qdrant-design.md) §4/§8). Encoder is a shared module the consumer app imports for query encoding; `SPARSE_MODE=off` = dense-only fallback | ✅ accepted (user 2026-07-26 — supersedes the earlier dense-only-v1 lean) | Dense-only v1 (rejected by user: exact-token recall matters from day one); learned sparse / true bge-m3 lexical weights (no serving path exposes them today — future second slot via `createVectorName`) |
 | D15 | **Chunk token counting uses the embedding model's own tokenizer**: `@huggingface/transformers` `AutoTokenizer.from_pretrained(EMBEDDING_TOKENIZER)` (default `Xenova/bge-m3` — bge-m3's XLM-RoBERTa sentencepiece vocab), so chunk budgets are exact against what the embedder consumes ([05](05-conversion-pipeline.md) §4). `EMBEDDING_TOKENIZER` is paired config with `EMBEDDING_MODEL` — a model swap swaps both inside the same re-index (D4). Local tokenization only; D11 governs AI *calls* and is untouched | ✅ accepted (user 2026-07-27 — supersedes the js-tiktoken proxy in the original chunking design) | js-tiktoken / gpt-tokenizer (OpenAI BPE ≈ ±20 % off vs XLM-R sentencepiece, worst on non-English — wrong ruler for bge-m3 budgets; gpt-tokenizer stays the pick *if* an OpenAI-tokenized model ever needs counting); coder/ai-tokenizer ("97 %+ accuracy" = approximate by design); character-count heuristics (coarser still) |
+| D16 | **LLM prompt text lives in Handlebars templates (`.hbs`), never in source code**: worker prompts under `worker/prompts/*.hbs`, rendered with the `handlebars` package (first instance: `catalog-description.hbs` — folder name / file paths / excerpt variables, [06](06-qdrant-design.md) §6); the converter's OCR instruction is `converter/prompts/ocr-image.hbs` — static, read at startup into MarkItDown's `llm_prompt` kwarg ([05](05-conversion-pipeline.md) §1/§3). Prompts become diff-able, reviewable files, tunable without touching code; any future LLM call follows the same pattern | ✅ accepted (user 2026-07-27) | Inline string literals (scatter prompt text through source, couple wording tweaks to code changes — exactly what the rule bans); JSON/YAML prompt files (multiline-escaping pain, no templating for the digest variables); a prompt-registry service (overkill for a single-owner worker) |
 
 ## 2. Open questions — **all answered** (as of 2026-07-26)
 

@@ -1,6 +1,6 @@
 # 08 — Configuration & deployment
 
-> Status: draft · Last updated: 2026-07-26
+> Status: draft · Last updated: 2026-07-27
 
 ## 1. Planned repository layout
 
@@ -16,6 +16,7 @@ vector-syncer/
 ├── worker/                        # TypeScript orchestrator
 │   ├── Dockerfile                 # node:24-slim multi-stage
 │   ├── package.json  tsconfig.json
+│   ├── prompts/                   # *.hbs LLM prompt templates, e.g. catalog-description.hbs (D16)
 │   └── src/
 │       ├── index.ts               # boot: config → queues → schedulers → workers → fastify
 │       ├── config.ts              # zod-validated env
@@ -30,6 +31,7 @@ vector-syncer/
 └── converter/                     # Python sidecar
     ├── Dockerfile                 # python:3.12-slim + uv
     ├── pyproject.toml
+    ├── prompts/                   # ocr-image.hbs — static OCR instruction template (D16)
     ├── app/main.py                # FastAPI /convert, /healthz
     └── tests/  fixtures/          # golden files: sample.docx/pdf/xlsx → expected md traits
 ```

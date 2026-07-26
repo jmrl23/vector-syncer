@@ -1,128 +1,130 @@
-# Graph Report - .  (2026-07-26)
+# Graph Report - vector-syncer  (2026-07-27)
 
 ## Corpus Check
-- Corpus is ~29,128 words - fits in a single context window. You may not need a graph.
+- 22 files · ~30,134 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 151 nodes · 299 edges · 12 communities
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 25 edges (avg confidence: 0.93)
-- Token cost: 147,765 input · 0 output
+- 164 nodes · 256 edges · 13 communities (12 shown, 1 thin omitted)
+- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.93)
+- Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `0bb7ac41`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Sync Engine & Queue Semantics|Sync Engine & Queue Semantics]]
-- [[_COMMUNITY_Feature Guides & Operations|Feature Guides & Operations]]
-- [[_COMMUNITY_Approved Spec Concepts|Approved Spec Concepts]]
-- [[_COMMUNITY_P0+P1 Implementation Plan|P0+P1 Implementation Plan]]
-- [[_COMMUNITY_Document Index|Document Index]]
-- [[_COMMUNITY_Runtime Components & Stack|Runtime Components & Stack]]
-- [[_COMMUNITY_Conversion & OCR|Conversion & OCR]]
-- [[_COMMUNITY_Hybrid Search & Consumer Contract|Hybrid Search & Consumer Contract]]
-- [[_COMMUNITY_Collection Layout & State|Collection Layout & State]]
-- [[_COMMUNITY_AI Provider & Catalog|AI Provider & Catalog]]
-- [[_COMMUNITY_Conversation Store|Conversation Store]]
-- [[_COMMUNITY_Delegated Auth Bootstrap|Delegated Auth Bootstrap]]
+- Sync Engine & Queue Semantics
+- Feature Guides & Operations
+- Approved Spec Concepts
+- P0+P1 Implementation Plan
+- Document Index
+- Runtime Components & Stack
+- Conversion & OCR
+- Hybrid Search & Consumer Contract
+- Collection Layout & State
+- Conversation Store Feature Guide
+- Conversation Store
+- Repository State
+- 05 — Conversion pipeline: MarkItDown, OCR, chunking, embeddings
 
 ## God Nodes (most connected - your core abstractions)
-1. `P0+P1 Foundation Implementation Plan` - 23 edges
-2. `vector-syncer Design Specification` - 19 edges
-3. `06 — Qdrant Design` - 12 edges
-4. `vector-syncer README` - 11 edges
-5. `04 — OneDrive / Microsoft Graph Integration` - 11 edges
-6. `10 — Decisions, Open Questions, Risks` - 11 edges
-7. `Worker (Node.js/TypeScript Orchestrator)` - 11 edges
-8. `OneDrive Folder Sync Feature Guide` - 11 edges
-9. `Operations Feature Guide` - 11 edges
-10. `01 — Requirements` - 10 edges
+1. `P0+P1 Foundation Implementation Plan` - 21 edges
+2. `vector-syncer Design Specification` - 16 edges
+3. `OneDrive Folder Sync Feature Guide` - 11 edges
+4. `Conversation Store Feature Guide` - 10 edges
+5. `Operations Feature Guide` - 10 edges
+6. `Vector Syncer Worker` - 10 edges
+7. `Searching From Your App Feature Guide` - 9 edges
+8. `05 — Conversion pipeline: MarkItDown, OCR, chunking, embeddings` - 7 edges
+9. `08 — Configuration & deployment` - 7 edges
+10. `01 — Requirements` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `vector-syncer System` --conceptually_related_to--> `Idempotency Principle`  [EXTRACTED]
-  README.md → docs/design/01-requirements.md
-- `vector-syncer System` --references--> `Worker (Node.js/TypeScript Orchestrator)`  [EXTRACTED]
-  README.md → docs/design/02-architecture.md
-- `vector-syncer System` --conceptually_related_to--> `Graph Delta Query`  [EXTRACTED]
-  README.md → docs/design/04-onedrive-graph-integration.md
-- `vector-syncer System` --references--> `Converter Service (Python FastAPI Sidecar)`  [EXTRACTED]
-  README.md → docs/design/05-conversion-pipeline.md
-- `vector-syncer System` --conceptually_related_to--> `od_catalog Catalog Collection`  [EXTRACTED]
-  README.md → docs/design/06-qdrant-design.md
+- `MVP (End of Phase 4)` --cites--> `01 — Requirements`  [EXTRACTED]
+  docs/design/09-roadmap.md → docs/design/01-requirements.md
+- `Graph Delta Query` --shares_data_with--> `Point Payload Schema`  [EXTRACTED]
+  docs/design/04-onedrive-graph-integration.md → docs/design/06-qdrant-design.md
+- `Job Deduplication (itemId:cTag)` --semantically_similar_to--> `Deterministic UUIDv5 Point IDs`  [INFERRED] [semantically similar]
+  docs/design/07-bullmq-design.md → docs/design/06-qdrant-design.md
+- `P0+P1 Foundation Implementation Plan` --implements--> `Implementation Phases P0-P6`  [INFERRED]
+  docs/superpowers/plans/2026-07-26-vector-syncer-p0-p1-foundation.md → docs/design/09-roadmap.md
+- `appendTurn` --conceptually_related_to--> `Idempotent Writes (UUIDv5 Point IDs)`  [INFERRED]
+  docs/features/conversation-store.md → docs/superpowers/specs/2026-07-26-vector-syncer-design.md
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Per-File Processing Pipeline (download, convert, chunk, embed, encode, upsert)** — design_02_architecture_worker, design_04_onedrive_graph_integration_microsoft_graph, design_05_conversion_pipeline_converter_service, design_05_conversion_pipeline_heading_aware_chunking, design_05_conversion_pipeline_bge_m3, design_06_qdrant_design_bm25_v1_encoder, design_06_qdrant_design_qdrant [EXTRACTED 1.00]
-- **Hybrid Dense+Sparse Search with RRF Fusion** — design_05_conversion_pipeline_bge_m3, design_06_qdrant_design_bm25_v1_encoder, design_06_qdrant_design_hybrid_rrf_search, design_06_qdrant_design_qdrant [EXTRACTED 1.00]
-- **Docker Compose Stack (worker, converter, redis, qdrant)** — design_02_architecture_worker, design_05_conversion_pipeline_converter_service, design_07_bullmq_design_redis, design_06_qdrant_design_qdrant [EXTRACTED 1.00]
-- **Conversation helpers ship in the shared consumer package** — features_searching_from_your_app_consumer_package, features_conversation_store_ensureconversationcollection, features_conversation_store_appendturn, features_conversation_store_getconversation, features_conversation_store_searchturns, features_conversation_store_deleteconversation [EXTRACTED 1.00]
-- **P1 delta walk pipeline (walk, classify, act) with persistent state** — plans_2026_07_26_vector_syncer_p0_p1_foundation_resolveroot, plans_2026_07_26_vector_syncer_p0_p1_foundation_walkdelta, plans_2026_07_26_vector_syncer_p0_p1_foundation_classifypage, plans_2026_07_26_vector_syncer_p0_p1_foundation_deltastate, plans_2026_07_26_vector_syncer_p0_p1_foundation_foldermap, plans_2026_07_26_vector_syncer_p0_p1_foundation_filestate, plans_2026_07_26_vector_syncer_p0_p1_foundation_devdelta [EXTRACTED 1.00]
-- **Encrypted MSAL device-code auth flow** — plans_2026_07_26_vector_syncer_p0_p1_foundation_crypto, plans_2026_07_26_vector_syncer_p0_p1_foundation_encryptedcacheplugin, plans_2026_07_26_vector_syncer_p0_p1_foundation_createmsalapp, plans_2026_07_26_vector_syncer_p0_p1_foundation_getgraphtoken, plans_2026_07_26_vector_syncer_p0_p1_foundation_authrequirederror, plans_2026_07_26_vector_syncer_p0_p1_foundation_cliauth [EXTRACTED 1.00]
+- **Vector Syncer Core Components** — claude_md_onedrive_integration, claude_md_qdrant_collections, claude_md_embedding_model, claude_md_bm25_sparse_encoder, claude_md_redis_bullmq, claude_md_consistency_machinery, claude_md_security_secrets [EXTRACTED 1.00]
+- **Document Hierarchy** — claude_md_spec_doc, claude_md_design_docs, claude_md_implementation_plans [EXTRACTED 1.00]
 
-## Communities (12 total, 0 thin omitted)
+## Communities (13 total, 1 thin omitted)
 
 ### Community 0 - "Sync Engine & Queue Semantics"
 Cohesion: 0.11
-Nodes (24): Idempotency Principle, At-Least-Once Delivery, Change-Notification Webhooks (v2), cTag Change Detection, Delta Item Classification, Graph Delta Query, 410 Gone Resync, Delete-Then-Upsert per File (+16 more)
+Nodes (17): 08 — Configuration & deployment, 1. Planned repository layout, 2. Environment variables, 3. docker-compose.yml (sketch), 4. Local development loop, 5. Operations runbook, 6. Deployment targets, 10 — Decisions, open questions, risks (+9 more)
 
 ### Community 1 - "Feature Guides & Operations"
-Cohesion: 0.15
-Nodes (21): Collection Discovery Feature Guide, od_catalog Collection Registry, Model and Provider Flexibility Feature Guide, Embedding Model Rebuild Cost, OpenAI-Compatible Provider Contract, OneDrive Folder Sync Feature Guide, OneDrive as Single Source of Truth, Weekly Reconcile (+13 more)
+Cohesion: 0.21
+Nodes (12): Idempotency Principle, At-Least-Once Delivery, cTag Change Detection, Delta Item Classification, Delete-Then-Upsert per File, Deterministic UUIDv5 Point IDs, Runtime-Adjustable Files Concurrency, Job Deduplication (itemId:cTag) (+4 more)
 
 ### Community 2 - "Approved Spec Concepts"
-Cohesion: 0.14
-Nodes (19): Base Folder to Collection Mapping (od_slug), Graph Delta Query Polling, Shared Consumer Package (@vector-syncer/consumer), Sparse-Only Degraded Mode, Docker Compose Stack, Converter /healthz Endpoint, vector-syncer Design Specification, bm25-v1 Sparse Encoder (+11 more)
+Cohesion: 0.16
+Nodes (24): 01 — Requirements, 02 — Architecture, 04 — OneDrive / Microsoft Graph Integration, 06 — Qdrant Design, 07 — BullMQ Design, 09 — Roadmap, Collection Discovery Feature Guide, od_catalog Collection Registry (+16 more)
 
 ### Community 3 - "P0+P1 Implementation Plan"
-Cohesion: 0.23
-Nodes (17): P0+P1 Foundation Implementation Plan, AuthRequiredError, classifyPage, cliAuth (yarn auth), createMsalApp, AES-256-GCM Cache Codec, DeltaGoneError, deltaState (+9 more)
+Cohesion: 0.19
+Nodes (19): P0+P1 Foundation Implementation Plan, AuthRequiredError, classifyPage, cliAuth (yarn auth), createMsalApp, AES-256-GCM Cache Codec, DeltaGoneError, deltaState (+11 more)
 
 ### Community 4 - "Document Index"
-Cohesion: 0.59
-Nodes (12): 01 — Requirements, 02 — Architecture, 03 — Tech Stack, 04 — OneDrive / Microsoft Graph Integration, 05 — Conversion Pipeline, 06 — Qdrant Design, 07 — BullMQ Design, 08 — Configuration & Deployment (+4 more)
+Cohesion: 0.20
+Nodes (14): Qdrant, Base Folder to Collection Mapping (od_slug), Searching From Your App Feature Guide, Shared Consumer Package (@vector-syncer/consumer), Search Result Payload Contract, Sparse-Only Degraded Mode, Converter /healthz Endpoint, vector-syncer Design Specification (+6 more)
 
 ### Community 5 - "Runtime Components & Stack"
-Cohesion: 0.31
-Nodes (10): Worker (Node.js/TypeScript Orchestrator), Hybrid Node + Python Runtime, Converter Service (Python FastAPI Sidecar), Qdrant, BullMQ, Redis, docker-compose Stack, D10: Self-Hosted Qdrant in Compose (+2 more)
+Cohesion: 0.17
+Nodes (16): Worker (Node.js/TypeScript Orchestrator), Change-Notification Webhooks (v2), Delegated Auth (Silent Refresh), Graph Delta Query, Device Code Flow Bootstrap, Encrypted MSAL Token Cache, Entra App Registration, Microsoft Graph API (+8 more)
 
 ### Community 6 - "Conversion & OCR"
 Cohesion: 0.20
-Nodes (10): Azure Document Intelligence (Fallback OCR), Empty-Conversion Warning, MarkItDown, OCR Strategy Tiers, Qwen3-VL OCR Model, Bull Board Dashboard, /health Endpoint, D4: bge-m3 via DeepInfra (+2 more)
+Nodes (12): OneDrive as Source of Truth, Redis Sync State (vs:* keys), Alias-Flip Rebuild, bm25-v1 Sparse Encoder, Collection per Base Folder, Conversation Store (app_conversations), Hybrid RRF Search, od_catalog Catalog Collection (+4 more)
 
 ### Community 7 - "Hybrid Search & Consumer Contract"
-Cohesion: 0.31
-Nodes (9): Delegated Auth (Silent Refresh), Microsoft Graph API, bm25-v1 Sparse Encoder, Conversation Store (app_conversations), Hybrid RRF Search, Shared Consumer Package, D14: Hybrid From Day One, Risk Register (+1 more)
+Cohesion: 0.18
+Nodes (11): BM25 Sparse Encoder, Consistency Machinery, Converter Package, Embedding Model, Graphify Tool, OneDrive Integration, Qdrant Collections, Redis and BullMQ (+3 more)
 
 ### Community 8 - "Collection Layout & State"
-Cohesion: 0.25
-Nodes (8): OneDrive as Source of Truth, Redis Sync State (vs:* keys), Alias-Flip Rebuild, Collection per Base Folder, Point Payload Schema, Operations Runbook, D12: One Collection per Base Folder, D5: Sync State in Redis
+Cohesion: 0.17
+Nodes (12): 03 — Tech stack, 1. Summary, 2. The one structural decision: hybrid Node + Python, 3. Dependency lists (planned), 4. Version pinning policy, Also rejected, converter/pyproject.toml (runtime), Infrastructure images (+4 more)
 
-### Community 9 - "AI Provider & Catalog"
-Cohesion: 0.32
-Nodes (8): DeepInfra (AI Provider), DeepSeek-V4-Flash LLM, OpenAI SDK, BAAI/bge-m3 Embedding Model, Heading-Aware Chunking, od_catalog Catalog Collection, D11: One AI Provider (DeepInfra via OpenAI SDK), D13: Catalog Collection
-
-### Community 10 - "Conversation Store"
+### Community 9 - "Conversation Store Feature Guide"
 Cohesion: 0.50
 Nodes (8): Conversation Store Feature Guide, app_conversations Collection, appendTurn, conversationId, deleteConversation, ensureConversationCollection, getConversation, searchTurns
 
-### Community 11 - "Delegated Auth Bootstrap"
+### Community 10 - "Conversation Store"
 Cohesion: 0.50
-Nodes (5): Device Code Flow Bootstrap, Encrypted MSAL Token Cache, Entra App Registration, MSAL Node, D2: Delegated Auth via Device Code
+Nodes (4): Design Documents, Implementation Plans, Process Rules, Spec Document
+
+### Community 12 - "05 — Conversion pipeline: MarkItDown, OCR, chunking, embeddings"
+Cohesion: 0.22
+Nodes (9): 05 — Conversion pipeline: MarkItDown, OCR, chunking, embeddings, 1. Converter service (Python sidecar), 2. What MarkItDown covers (v0.1.6, `markitdown[all]`), 3. OCR strategy (decision D8 — chosen: Qwen3-VL on DeepInfra), 4. Chunking (worker-side, TypeScript), 5. Embeddings — `BAAI/bge-m3` via DeepInfra (OpenAI SDK), 6. Per-file pipeline summary (inside one `process-file` job), API contract (+1 more)
 
 ## Knowledge Gaps
-- **3 isolated node(s):** `Azure Document Intelligence (Fallback OCR)`, `Entra App Registration`, `Search Result Payload Contract`
+- **45 isolated node(s):** `Planning documents`, `Feature guides (usage)`, `Glossary`, `Provenance`, `1. Summary` (+40 more)
   These have ≤1 connection - possible missing edges or undocumented components.
+- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `01 — Requirements` connect `Document Index` to `Sync Engine & Queue Semantics`, `Feature Guides & Operations`, `Approved Spec Concepts`?**
-  _High betweenness centrality (0.509) - this node is a cross-community bridge._
-- **Why does `Implementation Phases P0-P6` connect `Sync Engine & Queue Semantics` to `Hybrid Search & Consumer Contract`?**
-  _High betweenness centrality (0.504) - this node is a cross-community bridge._
-- **Why does `MVP (End of Phase 4)` connect `Sync Engine & Queue Semantics` to `Document Index`?**
-  _High betweenness centrality (0.503) - this node is a cross-community bridge._
-- **What connects `Azure Document Intelligence (Fallback OCR)`, `Entra App Registration`, `Retry Matrix` to the rest of the system?**
-  _13 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `vector-syncer Design Specification` connect `Document Index` to `Approved Spec Concepts`, `P0+P1 Implementation Plan`, `Runtime Components & Stack`, `Conversion & OCR`?**
+  _High betweenness centrality (0.140) - this node is a cross-community bridge._
+- **Why does `P0+P1 Foundation Implementation Plan` connect `P0+P1 Implementation Plan` to `Approved Spec Concepts`, `Document Index`, `Conversion & OCR`?**
+  _High betweenness centrality (0.105) - this node is a cross-community bridge._
+- **Why does `Microsoft Graph API` connect `Runtime Components & Stack` to `P0+P1 Implementation Plan`, `Document Index`?**
+  _High betweenness centrality (0.072) - this node is a cross-community bridge._
+- **What connects `Planning documents`, `Feature guides (usage)`, `Glossary` to the rest of the system?**
+  _45 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Sync Engine & Queue Semantics` be split into smaller, more focused modules?**
-  _Cohesion score 0.10507246376811594 - nodes in this community are weakly interconnected._
-- **Should `Approved Spec Concepts` be split into smaller, more focused modules?**
-  _Cohesion score 0.14035087719298245 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10822510822510822 - nodes in this community are weakly interconnected._
