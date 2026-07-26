@@ -28,6 +28,7 @@ A self-hosted background worker that mirrors one Microsoft OneDrive folder tree 
 | Catalog | **`od_catalog`** registry, one embedded point per collection with LLM-generated description (rich input: names, paths, content excerpts); serves **two first-class operations — enumerate** ("what collections exist?", full scroll) **and route** ("which collection covers X?", semantic search) (D13) |
 | Consistency | Delete-then-upsert per file update (D7); deterministic UUIDv5 point IDs; weekly reconcile backstop; state in Redis, all rebuildable (D5) |
 | Consumer | The **owner's own app/service (Node/TypeScript)** queries Qdrant directly — no MCP in v1. Contract: same embedding model; the app **imports the `bm25-v1` encoder module directly** (workspace/published package); catalog-first routing; client-side fan-out for global search |
+| Conversation store | **Consumer-owned** collection (default `app_conversations`, outside `od_*` — sync/reconcile/rebuild can never touch it): one hybrid point per turn; **a whole conversation is retrieved by `conversationId` alone** (indexed filter + `order_by: turn_index` scroll); helpers ship in the shared consumer package (P4) — `06-qdrant-design.md` §10 |
 | Deployment | **Docker compose on the owner's WSL2 machine now, possibly a VPS later**; migration = copy `.env` + volumes. Sleeping machine delays (never loses) syncs |
 | Package mgmt | **yarn** (worker), **uv** (converter) |
 
@@ -97,7 +98,7 @@ Every failure mode maps to one of: **retry with backoff** (transient network/5xx
 | P1 | Auth (device code + encrypted cache) + Graph delta walker + **edge-case spike** | 1–2 d |
 | P2 | Queues, schedulers, dedup, Bull Board, `/health`, manual trigger, live concurrency | 1 d |
 | P3 | Download + converter service + OCR path + empty-conversion warning | 1–2 d |
-| P4 | Chunker, embeddings client, `bm25-v1` encoder, multi-collection layer, catalog → **MVP** | 2–3 d |
+| P4 | Chunker, embeddings client, `bm25-v1` encoder, multi-collection layer, catalog, shared consumer package (encoder + conversation-store helpers) → **MVP** | 2–3 d |
 | P5 | Hardening: rate-limit fault injection, reconcile, `resync` CLI, chaos afternoon, runbook validation | 2–3 d |
 | P6 | Backlog: DocIntel fallback + OCR budget add-backs, webhooks, learned sparse, MCP server, multi-folder, conversion cache, Prometheus | — |
 

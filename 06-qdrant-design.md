@@ -204,3 +204,38 @@ Hybrid (dense + local BM25 sparse, RRF fusion) **is v1** — user decision 2026-
 2. **Encoder improvements** (stemming, stopwords, language-aware tokenization): version-bump to `bm25-v2`, run a sparse-only backfill, update the shared module — no re-embedding, no rebuild.
 
 ColBERT-style reranking (bge-m3's third output, Qdrant multivectors + MaxSim) stays a distant option — storage-hungry, only worth it if top-k precision becomes the bottleneck.
+
+## 10. Consumer-owned collections: the conversation store (user addition, 2026-07-26)
+
+The consumer app also stores its users' chat conversations in Qdrant — in its **own collection, outside the managed namespace**. The boundary rule that makes this safe: vector-syncer only ever creates, writes, or drops collections named `{QDRANT_COLLECTION_PREFIX}*` (`od_*`) plus `od_catalog`. Anything else in the same Qdrant instance is invisible to sync, reconcile, rebuilds, and base-folder deletes — so `app_conversations` (default name; the app's own config) can never become collateral damage.
+
+**Shape — one point per turn:**
+
+- Vectors: the same `dense` (1024, Cosine) + `sparse` (`modifier: idf`) pair as the document collections. The app reuses its embedder config and the imported `bm25-v1` module, so conversations get hybrid memory search for free.
+- Point ID: `uuidv5('conv:' + conversationId + '#' + turnIndex, NAMESPACE)` — appends are idempotent, an edited turn overwrites.
+- Payload: `conversation_id` (keyword, **indexed**) · `turn_index` (integer, **indexed with `range: true`** — required for ordering) · `role` (`'user' | 'assistant'`) · `text` · `created_at` · plus `user_id` (keyword, indexed) if the app is multi-user.
+
+**The retrieval contract — a `conversationId` is all that's needed:**
+
+```ts
+// fetch a whole conversation, in order, by reference alone
+const { points } = await qdrant.scroll('app_conversations', {
+  filter: { must: [{ key: 'conversation_id', match: { value: conversationId } }] },
+  order_by: { key: 'turn_index' },          // ascending
+  limit: 1024,
+  with_payload: true,
+});
+// points[i].payload → { role, text, created_at, … } — render the transcript directly
+```
+
+**Operations** (helpers exported from the same shared consumer package as the `bm25-v1` encoder, built in Phase 4; the worker never calls them):
+
+| Helper | Does |
+|---|---|
+| `ensureConversationCollection(qdrant, name?)` | create collection + payload indexes if absent — idempotent, call at app startup |
+| `appendTurn(conversationId, turnIndex, role, text)` | embed (dense) + encode (sparse) + upsert one point |
+| `getConversation(conversationId)` | the ordered scroll above |
+| `searchTurns(query, { conversationId?, userId? })` | hybrid RRF search over turns, optionally scoped to one conversation/user |
+| `deleteConversation(conversationId)` | delete by `conversation_id` filter |
+
+Notes: turn text goes to the configured provider for embedding, exactly like document content (D11 applies to it too). The conversation store never appears in `od_catalog` — the catalog describes document collections only.

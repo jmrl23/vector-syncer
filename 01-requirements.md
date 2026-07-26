@@ -19,6 +19,7 @@ Documents that a team (or individual) maintains in a OneDrive folder should be c
 
 - No write-back to OneDrive (read-only sync).
 - No search/query API of its own — consumers query Qdrant directly (a search endpoint / MCP server is a candidate for a later phase, see [09-roadmap.md](09-roadmap.md)).
+- The worker never ingests user conversations. Conversation storage is **consumer-owned**: the app writes its own collection outside `od_*` (default `app_conversations`), and a whole conversation is retrievable by its `conversationId` alone — pattern and helpers specced in [06-qdrant-design.md](06-qdrant-design.md) §10.
 - No multi-user / multi-drive fan-out (single account, single folder; the design keeps IDs drive-qualified so this can be added later).
 - No real-time webhooks (polling first; webhook upgrade path documented in [04-onedrive-graph-integration.md](04-onedrive-graph-integration.md)).
 - No UI beyond the Bull Board queue dashboard.
