@@ -16,7 +16,10 @@ import OpenAI from 'openai';
 import { bm25 } from '@vector-syncer/consumer';   // the shared bm25-v1 encoder
 
 const qdrant = new QdrantClient({ url: process.env.QDRANT_URL ?? 'http://localhost:6333' });
-const ai = new OpenAI();  // reads OPENAI_BASE_URL + OPENAI_API_KEY — same values the worker uses
+const ai = new OpenAI({
+  baseURL: process.env.EMBEDDING_BASE_URL || process.env.OPENAI_BASE_URL,
+  apiKey: process.env.EMBEDDING_API_KEY || process.env.OPENAI_API_KEY,
+});  // must match whichever endpoint/key the worker actually embeds with
 
 async function embed(text: string): Promise<number[]> {
   const res = await ai.embeddings.create({

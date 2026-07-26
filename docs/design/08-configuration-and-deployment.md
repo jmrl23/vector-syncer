@@ -56,9 +56,12 @@ vector-syncer/
 | `ROOT_FILES_COLLECTION` | `_root` | catch-all slug for files directly under the sync root; empty = skip them |
 | `CATALOG_COLLECTION` | `od_catalog` | registry collection ([06](06-qdrant-design.md) §6) |
 | `CONVERTER_URL` | `http://converter:8000` | |
-| `OPENAI_API_KEY` | — (required) | the OpenAI SDK's native var — set to the DeepInfra token; one key for embeddings + OCR + descriptions |
+| `OPENAI_API_KEY` | — (required) | the OpenAI SDK's native var — set to the DeepInfra token; shared default key for embeddings + OCR + descriptions |
 | `OPENAI_BASE_URL` | `https://api.deepinfra.com/v1/openai` | the SDK's native var — **any** OpenAI-compatible provider slots in here; nothing provider-specific in code |
-| `EMBEDDING_MODEL` | `BAAI/bge-m3` | served by DeepInfra |
+| `EMBEDDING_BASE_URL` / `EMBEDDING_API_KEY` | empty → falls back to `OPENAI_BASE_URL`/`OPENAI_API_KEY` | override to serve embeddings from a different provider than OCR/descriptions |
+| `OCR_BASE_URL` / `OCR_API_KEY` | empty → falls back to `OPENAI_BASE_URL`/`OPENAI_API_KEY` | override for the converter's OCR calls only |
+| `LLM_BASE_URL` / `LLM_API_KEY` | empty → falls back to `OPENAI_BASE_URL`/`OPENAI_API_KEY` | override for catalog-description calls only |
+| `EMBEDDING_MODEL` | `BAAI/bge-m3` | served by DeepInfra by default |
 | `EMBEDDING_TOKENIZER` | `Xenova/bge-m3` | HF repo the chunker loads the *exact* embedding tokenizer from (`AutoTokenizer`, D15); must match `EMBEDDING_MODEL` — swap them together |
 | `EMBEDDING_DIMENSIONS` | `1024` | must match model & every collection |
 | `EMBEDDING_BATCH_SIZE` | `64` | texts per embeddings call |
@@ -74,9 +77,9 @@ vector-syncer/
 | `BULL_BOARD_PORT` | `3001` | dashboard + `/health` |
 | `LOG_LEVEL` | `info` | |
 
-The three model IDs above (`EMBEDDING_MODEL`, `OCR_LLM_MODEL`, `LLM_MODEL`) are **initial preferences, not commitments** — any model served by the endpoint in `OPENAI_BASE_URL` works. Swapping the OCR or LLM model is free at any time; swapping the embedding model changes dimensions and therefore means a collection rebuild ([06](06-qdrant-design.md) §7) — finalize it before the first full backfill. An embedding swap also means updating `EMBEDDING_TOKENIZER` to the new model's tokenizer repo in the same change (D15): chunk budgets are measured with that tokenizer, and it must always match the model that embeds the chunks.
+The three model IDs above (`EMBEDDING_MODEL`, `OCR_LLM_MODEL`, `LLM_MODEL`) are **initial preferences, not commitments** — any model served by the endpoint in that role's base URL (`EMBEDDING_BASE_URL`, `OCR_BASE_URL`, `LLM_BASE_URL`, each falling back to `OPENAI_BASE_URL`) works. Swapping the OCR or LLM model is free at any time; swapping the embedding model changes dimensions and therefore means a collection rebuild ([06](06-qdrant-design.md) §7) — finalize it before the first full backfill. An embedding swap also means updating `EMBEDDING_TOKENIZER` to the new model's tokenizer repo in the same change (D15): chunk budgets are measured with that tokenizer, and it must always match the model that embeds the chunks.
 
-Secrets (`MSAL_CACHE_KEY`, `OPENAI_API_KEY`, `DOCINTEL_KEY`, `QDRANT_API_KEY`) come from `.env` (0600, gitignored) in v1; anything fancier (sops, vault) is a deploy-target question (Q5).
+Secrets (`MSAL_CACHE_KEY`, `OPENAI_API_KEY`, `EMBEDDING_API_KEY`, `OCR_API_KEY`, `LLM_API_KEY`, `DOCINTEL_KEY`, `QDRANT_API_KEY`) come from `.env` (0600, gitignored) in v1; anything fancier (sops, vault) is a deploy-target question (Q5).
 
 ## 3. docker-compose.yml (sketch)
 
@@ -101,6 +104,8 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY:?}
       - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.deepinfra.com/v1/openai}
+      - OCR_BASE_URL=${OCR_BASE_URL:-}       # falls back to OPENAI_BASE_URL above if unset
+      - OCR_API_KEY=${OCR_API_KEY:-}         # falls back to OPENAI_API_KEY above if unset
       - OCR_LLM_MODEL=${OCR_LLM_MODEL:-Qwen/Qwen3-VL-235B-A22B-Instruct}
       - DOCINTEL_ENDPOINT=${DOCINTEL_ENDPOINT:-}
       - DOCINTEL_KEY=${DOCINTEL_KEY:-}

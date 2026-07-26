@@ -49,7 +49,10 @@ if os.getenv("OCR_LLM_MODEL"):                        # chosen: Qwen3-VL via Dee
     from openai import OpenAI
     ocr = MarkItDown(
         enable_plugins=True,                          # activates the markitdown-ocr plugin
-        llm_client=OpenAI(),                          # reads OPENAI_BASE_URL / OPENAI_API_KEY (→ DeepInfra)
+        llm_client=OpenAI(
+            base_url=os.getenv("OCR_BASE_URL") or os.getenv("OPENAI_BASE_URL"),
+            api_key=os.getenv("OCR_API_KEY") or os.getenv("OPENAI_API_KEY"),
+        ),                                             # OCR_* overrides fall back to the shared OPENAI_* pair
         llm_model=os.environ["OCR_LLM_MODEL"],        # Qwen/Qwen3-VL-235B-A22B-Instruct
         llm_prompt=(PROMPTS_DIR / "ocr-image.hbs").read_text(),   # static template, read once (D16)
     )
@@ -120,12 +123,15 @@ Token sizing is **exact, not a proxy** (D15, 2026-07-27 — supersedes the earli
 
 ## 5. Embeddings — `BAAI/bge-m3` via DeepInfra (OpenAI SDK)
 
-All AI in this project rides one provider — **DeepInfra** today — through the **official OpenAI SDK only** (decision D11): embeddings here; OCR (§3) and catalog descriptions ([06](06-qdrant-design.md) §6) elsewhere. **Nothing is hardcoded**: the SDK's native env vars carry the endpoint and key (`OPENAI_BASE_URL=https://api.deepinfra.com/v1/openai`, `OPENAI_API_KEY=<deepinfra token>`), and every model ID is its own env var — any OpenAI-compatible provider slots in by changing config.
+All AI in this project rides **DeepInfra by default** — through the **official OpenAI SDK only** (decision D11): embeddings here; OCR (§3) and catalog descriptions ([06](06-qdrant-design.md) §6) elsewhere, each independently overridable. **Nothing is hardcoded**: the SDK's native env vars carry the shared endpoint and key (`OPENAI_BASE_URL=https://api.deepinfra.com/v1/openai`, `OPENAI_API_KEY=<deepinfra token>`), every model ID is its own env var, and every role's `_BASE_URL`/`_API_KEY` pair overrides the shared one when set — any OpenAI-compatible provider slots in by changing config, per role or all at once.
 
 ```ts
 import OpenAI from 'openai';
 
-const ai = new OpenAI();   // reads OPENAI_BASE_URL + OPENAI_API_KEY — the SDK's own env vars
+const ai = new OpenAI({
+  baseURL: env.EMBEDDING_BASE_URL || env.OPENAI_BASE_URL,
+  apiKey: env.EMBEDDING_API_KEY || env.OPENAI_API_KEY,
+});
 
 const res = await ai.embeddings.create({
   model: env.EMBEDDING_MODEL,    // BAAI/bge-m3 — 1024-d dense, 8192-token input, 100+ languages

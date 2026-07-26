@@ -4,7 +4,7 @@
 
 ## 1. Component overview
 
-Two custom services plus two off-the-shelf stores, all in one `docker compose` stack. Node.js owns orchestration (BullMQ is Node-first); Python owns document conversion (MarkItDown is Python-only). All AI calls — bge-m3 embeddings, Qwen3-VL OCR, DeepSeek catalog descriptions — go to **DeepInfra's OpenAI-compatible API** with one key. Full rationale in [03-tech-stack.md](03-tech-stack.md).
+Two custom services plus two off-the-shelf stores, all in one `docker compose` stack. Node.js owns orchestration (BullMQ is Node-first); Python owns document conversion (MarkItDown is Python-only). All AI calls — bge-m3 embeddings, Qwen3-VL OCR, DeepSeek catalog descriptions — go to **DeepInfra's OpenAI-compatible API** with a shared key by default, with each role independently overridable to a different provider. Full rationale in [03-tech-stack.md](03-tech-stack.md).
 
 ```mermaid
 flowchart LR
