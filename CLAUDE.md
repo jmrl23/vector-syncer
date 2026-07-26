@@ -50,6 +50,12 @@ Two things always require the human owner: the Entra app registration + `yarn au
 - Verify library APIs with Context7 before writing integration code; README's Provenance section records what was verified on 2026-07-26 — anything tagged *"verify at implementation"* (mostly pricing/minor kwargs) must be re-checked when touched.
 - When implementation deviates from a design doc, update the doc in the same commit (spike findings go in `docs/design/04` §4 as regression-tested facts).
 
-## Knowledge graph
+## graphify
 
-`graphify-out/` (once present) holds this project's knowledge graph — for questions about architecture, file relationships, or where something is specced, query it first via the `graphify` skill instead of re-reading all docs.
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+Rules:
+- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
+- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
