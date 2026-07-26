@@ -30,7 +30,7 @@
 | ~~Q3~~ | OCR — **answered 2026-07-26**: `Qwen/Qwen3-VL-235B-A22B-Instruct` via DeepInfra, markitdown-ocr plugin (D8); DocIntel demoted to fallback | Remaining sub-question: rough share of scanned content, to predict OCR spend | on by default |
 | ~~Q4~~ | Corpus size/mix — **answered 2026-07-26: count unknown; mix is mostly digital PDFs with minimal images.** Defaults stand (sized for ≤ 50 k files); Bull Board stats + the `empty_conversion` counter measure reality during the first backfill | — | — |
 | ~~Q5~~ | Deployment — **answered 2026-07-26: Docker on the WSL2 machine now, possibly a VPS later.** Docker daemon must autostart with WSL; a sleeping machine *delays* (never loses) syncs; VPS migration = copy `.env` + `data/` + the two volumes ([08](08-configuration-and-deployment.md) §6) | — | — |
-| ~~Q6~~ | Consumers — **answered 2026-07-26: the user's own app/service**, querying Qdrant directly. MCP server stays in the Phase 6 backlog; [06](06-qdrant-design.md) §8 is the app's integration contract: same embedding model **and** same `bm25-v1` encoder for queries, catalog-first routing, client-side fan-out for global search | — | — |
+| ~~Q6~~ | Consumers — **answered 2026-07-26: the user's own app/service (Node/TypeScript)**, querying Qdrant directly. MCP server stays in the Phase 6 backlog; [06](06-qdrant-design.md) §8 is the app's integration contract: same embedding model, the `bm25-v1` encoder **imported directly from this repo** (workspace/published package), catalog-first routing, client-side fan-out for global search | — | — |
 
 ## 3. Risk register
 
@@ -45,7 +45,7 @@
 | Document content processed by a third party (DeepInfra) | accepted | M | Explicit decision D11; review DeepInfra's data-retention/ToS at implementation; provider swappable via `OPENAI_BASE_URL` if governance changes |
 | Base-folder proliferation → collection sprawl (per-collection HNSW/segment overhead) | L | M | D12 records the single-collection fallback; reconcile reports collection count; catalog keeps fan-out manageable |
 | Embedding model deprecated/changed → full reindex needed | L | M | Versioned collections + alias flips are routine, zero-downtime ([06](06-qdrant-design.md) §7), or additive via `createVectorName`; re-embedding cost at bge-m3 rates is trivial |
-| Sparse-encoder drift — consumer app encodes queries with a different tokenizer/hash than the indexer → hybrid recall silently degrades | L | M | One shared, versioned encoder module (`bm25-v1`); `sparse_encoder` recorded per point; reconcile flags version mixes; encoder bump = sparse-only backfill, no re-embedding |
+| Sparse-encoder drift — consumer app encodes queries with a different tokenizer/hash than the indexer → hybrid recall silently degrades | L | M | App confirmed **Node/TS** (2026-07-26) → it imports the exact versioned module (`bm25-v1`), no reimplementation; golden-vector tests pin the encoding; `sparse_encoder` recorded per point; reconcile flags version mixes; encoder bump = sparse-only backfill, no re-embedding |
 | Redis data loss | L | L | Rebuildable: re-enumeration + Qdrant `content_hash` short-circuit avoids re-embedding |
 | MarkItDown fidelity gaps (complex XLSX, diagram-heavy PPTX) degrade retrieval | M | M | Golden-file tests set expectations; `converter` field in payload aids diagnosis; OCR/LLM tier for image-heavy docs |
 | Poison files (corrupt, exotic, enormous) clog retries | M | L | Attempt caps, `UnrecoverableError` classification, size caps, Bull Board visibility |

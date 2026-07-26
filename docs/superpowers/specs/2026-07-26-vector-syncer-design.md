@@ -27,7 +27,7 @@ A self-hosted background worker that mirrors one Microsoft OneDrive folder tree 
 | Collection layout | **One collection per base folder** (`od_{slug}` alias → versioned physical), `od__root` catch-all, mapping keyed by folder **ID** (rename-safe) (D12) |
 | Catalog | **`od_catalog`** registry, one embedded point per collection with LLM-generated description (rich input: names, paths, content excerpts); serves **two first-class operations — enumerate** ("what collections exist?", full scroll) **and route** ("which collection covers X?", semantic search) (D13) |
 | Consistency | Delete-then-upsert per file update (D7); deterministic UUIDv5 point IDs; weekly reconcile backstop; state in Redis, all rebuildable (D5) |
-| Consumer | The **owner's own app/service** queries Qdrant directly — no MCP in v1. Contract: same embedding model + same `bm25-v1` encoder module for queries; catalog-first routing; client-side fan-out for global search |
+| Consumer | The **owner's own app/service (Node/TypeScript)** queries Qdrant directly — no MCP in v1. Contract: same embedding model; the app **imports the `bm25-v1` encoder module directly** (workspace/published package); catalog-first routing; client-side fan-out for global search |
 | Deployment | **Docker compose on the owner's WSL2 machine now, possibly a VPS later**; migration = copy `.env` + volumes. Sleeping machine delays (never loses) syncs |
 | Package mgmt | **yarn** (worker), **uv** (converter) |
 
@@ -107,5 +107,5 @@ Every failure mode maps to one of: **retry with backoff** (transient network/5xx
 2. **Delta edge cases are assumptions** until the Phase-1 spike; weekly reconcile backstops correctness regardless.
 3. **Embedding model choice is the one expensive commitment** (change = re-index); everything else is env-swappable.
 4. **Image-light corpus assumption** removed the OCR budget machinery — `empty_conversion` counter + first invoice are the review triggers; add-backs documented.
-5. **Sparse-encoder drift** between indexer and app would silently degrade hybrid recall — shared versioned module + per-point `sparse_encoder` field.
+5. **Sparse-encoder drift** between indexer and app would silently degrade hybrid recall — app confirmed Node/TS, so it imports the exact versioned module (no reimplementation); golden-vector tests + per-point `sparse_encoder` field.
 6. **Provider dependency** (outage/model retirement) — queues drain on recovery; models pinned in env; self-host switch-back documented.

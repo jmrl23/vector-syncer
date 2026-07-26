@@ -93,7 +93,7 @@ This is the "important information about the files" requirement (FR-14) made con
 3. Value = BM25 TF saturation `tf·(k1+1) / (tf + k1·(1−b+b·len/avgLen))`, constants fixed at `k1=1.2`, `b=0.75`, `avgLen=256`.
 4. IDF stays server-side: the slot's `modifier: 'idf'` applies live corpus-level IDF at query time — always current as the collection grows.
 
-The encoder is **shared code with the consumer app**: queries must be encoded with the identical tokenizer/hash, so it ships as a small importable module, and the `sparse_encoder` payload field catches version drift. An encoder change is a cheap sparse-only backfill (no re-embedding); `SPARSE_MODE=off` falls back to dense-only writes.
+The encoder is **shared code with the consumer app** (confirmed Node/TS): queries must be encoded with the identical tokenizer/hash, so the app imports the exact module (workspace or published package) rather than reimplementing it, and the `sparse_encoder` payload field catches version drift. An encoder change is a cheap sparse-only backfill (no re-embedding); `SPARSE_MODE=off` falls back to dense-only writes.
 
 **Full (re)index of one file** — target collection resolved from the ancestor chain first:
 
