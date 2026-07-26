@@ -1,6 +1,6 @@
 # Feature: Searching the vector database from your application
 
-> The consumer contract: how another application (yours — Node/TypeScript) gets data out of the collections vector-syncer maintains. Design internals: [`06-qdrant-design.md`](../../06-qdrant-design.md) §3/§4/§8.
+> The consumer contract: how another application (yours — Node/TypeScript) gets data out of the collections vector-syncer maintains. Design internals: [`06-qdrant-design.md`](../design/06-qdrant-design.md) §3/§4/§8.
 
 ## The three rules
 

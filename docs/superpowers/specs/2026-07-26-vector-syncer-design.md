@@ -2,7 +2,7 @@
 
 > Date: 2026-07-26 · Status: **validated through brainstorming review with the owner** (all open questions answered, all sections walked through and approved)
 >
-> This spec distills the detailed planning documents in the repo root (`01-requirements.md` … `10-decisions-and-risks.md`); those remain the deep reference for each area. Where this spec and a detail doc disagree, this spec (newer) wins and the doc should be fixed.
+> This spec distills the detailed planning documents in `docs/design/` (`01-requirements.md` … `10-decisions-and-risks.md`); those remain the deep reference for each area. Where this spec and a detail doc disagree, this spec (newer) wins and the doc should be fixed.
 
 ## 1. Purpose
 
@@ -28,7 +28,7 @@ A self-hosted background worker that mirrors one Microsoft OneDrive folder tree 
 | Catalog | **`od_catalog`** registry, one embedded point per collection with LLM-generated description (rich input: names, paths, content excerpts); serves **two first-class operations — enumerate** ("what collections exist?", full scroll) **and route** ("which collection covers X?", semantic search) (D13) |
 | Consistency | Delete-then-upsert per file update (D7); deterministic UUIDv5 point IDs; weekly reconcile backstop; state in Redis, all rebuildable (D5) |
 | Consumer | The **owner's own app/service (Node/TypeScript)** queries Qdrant directly — no MCP in v1. Contract: same embedding model; the app **imports the `bm25-v1` encoder module directly** (workspace/published package); catalog-first routing; client-side fan-out for global search |
-| Conversation store | **Consumer-owned** collection (default `app_conversations`, outside `od_*` — sync/reconcile/rebuild can never touch it): one hybrid point per turn; **a whole conversation is retrieved by `conversationId` alone** (indexed filter + `order_by: turn_index` scroll); helpers ship in the shared consumer package (P4) — `06-qdrant-design.md` §10 |
+| Conversation store | **Consumer-owned** collection (default `app_conversations`, outside `od_*` — sync/reconcile/rebuild can never touch it): one hybrid point per turn; **a whole conversation is retrieved by `conversationId` alone** (indexed filter + `order_by: turn_index` scroll); helpers ship in the shared consumer package (P4) — `docs/design/06-qdrant-design.md` §10 |
 | Deployment | **Docker compose on the owner's WSL2 machine now, possibly a VPS later**; migration = copy `.env` + volumes. Sleeping machine delays (never loses) syncs |
 | Package mgmt | **yarn** (worker), **uv** (converter) |
 
@@ -70,7 +70,7 @@ Identity (file id, name, path, web URL) · typing (extension, mime) · attributi
 
 ## 6. Error handling summary
 
-Every failure mode maps to one of: **retry with backoff** (transient network/5xx), **rate-limit pause** (429), **complete-with-status** (unsupported/corrupt/oversized/empty → `skipped_*`/warning counters), **park in failed set** (poison, visible in Bull Board, weekly reconcile + manual retry), or **halt loudly** (`AUTH_REQUIRED`). Redis/Qdrant outages queue work and drain on recovery. Full table: `02-architecture.md` §6.
+Every failure mode maps to one of: **retry with backoff** (transient network/5xx), **rate-limit pause** (429), **complete-with-status** (unsupported/corrupt/oversized/empty → `skipped_*`/warning counters), **park in failed set** (poison, visible in Bull Board, weekly reconcile + manual retry), or **halt loudly** (`AUTH_REQUIRED`). Redis/Qdrant outages queue work and drain on recovery. Full table: `docs/design/02-architecture.md` §6.
 
 ## 7. Testing strategy
 
@@ -102,7 +102,7 @@ Every failure mode maps to one of: **retry with backoff** (transient network/5xx
 | P5 | Hardening: rate-limit fault injection, reconcile, `resync` CLI, chaos afternoon, runbook validation | 2–3 d |
 | P6 | Backlog: DocIntel fallback + OCR budget add-backs, webhooks, learned sparse, MCP server, multi-folder, conversion cache, Prometheus | — |
 
-## 10. Top risks (register: `10-decisions-and-risks.md` §3)
+## 10. Top risks (register: `docs/design/10-decisions-and-risks.md` §3)
 
 1. **Refresh-token death is silent** at the source — mitigated by first-class `AUTH_REQUIRED` health + runbook; wire `/health` to an uptime monitor day one.
 2. **Delta edge cases are assumptions** until the Phase-1 spike; weekly reconcile backstops correctness regardless.

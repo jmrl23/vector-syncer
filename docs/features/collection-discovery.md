@@ -1,6 +1,6 @@
 # Feature: Collection discovery (the catalog)
 
-> `od_catalog` is the system's self-description: one embedded, LLM-described entry per document collection. It answers two different questions for your app. Design internals: [`06-qdrant-design.md`](../../06-qdrant-design.md) §6.
+> `od_catalog` is the system's self-description: one embedded, LLM-described entry per document collection. It answers two different questions for your app. Design internals: [`06-qdrant-design.md`](../design/06-qdrant-design.md) §6.
 
 ## Operation 1 — Enumerate: “what collections are available?”
 

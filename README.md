@@ -26,16 +26,16 @@ Key properties:
 
 | Doc | Contents |
 |---|---|
-| [01-requirements.md](01-requirements.md) | Goals, functional & non-functional requirements, constraints, out of scope |
-| [02-architecture.md](02-architecture.md) | Components, data flow, sequence diagrams, consistency model, failure modes |
-| [03-tech-stack.md](03-tech-stack.md) | Chosen stack per layer, rationale, rejected alternatives, dependency list |
-| [04-onedrive-graph-integration.md](04-onedrive-graph-integration.md) | Entra app registration, delegated auth (MSAL device code + token cache), delta queries, downloads, throttling |
-| [05-conversion-pipeline.md](05-conversion-pipeline.md) | MarkItDown converter service, OCR strategy tiers, chunking algorithm, embedding providers & cost |
-| [06-qdrant-design.md](06-qdrant-design.md) | Collection & payload schema, point IDs, write/delete flows, reindex & rebuild procedures |
-| [07-bullmq-design.md](07-bullmq-design.md) | Queue topology, job scheduler, retries, rate limiting, deduplication, dashboard |
-| [08-configuration-and-deployment.md](08-configuration-and-deployment.md) | Repo layout, environment variables, docker-compose, operations runbook |
-| [09-roadmap.md](09-roadmap.md) | Implementation phases with acceptance criteria |
-| [10-decisions-and-risks.md](10-decisions-and-risks.md) | Decision log, **open questions that need answers**, risk register |
+| [01-requirements.md](docs/design/01-requirements.md) | Goals, functional & non-functional requirements, constraints, out of scope |
+| [02-architecture.md](docs/design/02-architecture.md) | Components, data flow, sequence diagrams, consistency model, failure modes |
+| [03-tech-stack.md](docs/design/03-tech-stack.md) | Chosen stack per layer, rationale, rejected alternatives, dependency list |
+| [04-onedrive-graph-integration.md](docs/design/04-onedrive-graph-integration.md) | Entra app registration, delegated auth (MSAL device code + token cache), delta queries, downloads, throttling |
+| [05-conversion-pipeline.md](docs/design/05-conversion-pipeline.md) | MarkItDown converter service, OCR strategy tiers, chunking algorithm, embedding providers & cost |
+| [06-qdrant-design.md](docs/design/06-qdrant-design.md) | Collection & payload schema, point IDs, write/delete flows, reindex & rebuild procedures |
+| [07-bullmq-design.md](docs/design/07-bullmq-design.md) | Queue topology, job scheduler, retries, rate limiting, deduplication, dashboard |
+| [08-configuration-and-deployment.md](docs/design/08-configuration-and-deployment.md) | Repo layout, environment variables, docker-compose, operations runbook |
+| [09-roadmap.md](docs/design/09-roadmap.md) | Implementation phases with acceptance criteria |
+| [10-decisions-and-risks.md](docs/design/10-decisions-and-risks.md) | Decision log, **open questions that need answers**, risk register |
 
 ## Feature guides (usage)
 

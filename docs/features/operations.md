@@ -1,6 +1,6 @@
 # Feature: Operations — triggers, tuning, recovery
 
-> The knobs and procedures for whoever runs the stack. Full runbook: [`08-configuration-and-deployment.md`](../../08-configuration-and-deployment.md) §5; queue internals: [`07-bullmq-design.md`](../../07-bullmq-design.md).
+> The knobs and procedures for whoever runs the stack. Full runbook: [`08-configuration-and-deployment.md`](../design/08-configuration-and-deployment.md) §5; queue internals: [`07-bullmq-design.md`](../design/07-bullmq-design.md).
 
 ## Trigger a sync manually
 

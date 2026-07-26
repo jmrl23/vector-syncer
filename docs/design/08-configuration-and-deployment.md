@@ -6,7 +6,10 @@
 
 ```
 vector-syncer/
-├── README.md, 01…10-*.md          # these planning docs (may move to docs/ once code lands)
+├── README.md                      # index (repo root)
+├── docs/design/01…10-*.md         # these design docs
+├── docs/features/                 # per-feature usage guides
+├── docs/superpowers/              # approved spec + implementation plans
 ├── docker-compose.yml
 ├── .env.example                   # every variable below, with safe defaults
 ├── data/                          # volume: encrypted MSAL token cache (gitignored)

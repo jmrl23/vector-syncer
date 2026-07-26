@@ -1,8 +1,8 @@
 # Feature guides
 
-> Usage-oriented documentation: one guide per feature vector-syncer offers, written for the people and applications *using* the system (the design internals live in the repo-root docs `01`–`10-*.md`).
+> Usage-oriented documentation: one guide per feature vector-syncer offers, written for the people and applications *using* the system (the design internals live in [`docs/design/`](../design/)).
 >
-> **Status note:** these guides were written at design time — the code ships per [`09-roadmap.md`](../../09-roadmap.md). Snippets reflect the committed design and become runnable as their phase lands (search & consumer-package snippets: Phase 4).
+> **Status note:** these guides were written at design time — the code ships per [`09-roadmap.md`](../design/09-roadmap.md). Snippets reflect the committed design and become runnable as their phase lands (search & consumer-package snippets: Phase 4).
 
 | Guide | What it covers | For whom |
 |---|---|---|

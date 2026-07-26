@@ -1,6 +1,6 @@
 # Feature: OneDrive folder sync
 
-> What the core feature does, from the owner's point of view. Design internals: [`01-requirements.md`](../../01-requirements.md), [`02-architecture.md`](../../02-architecture.md), [`04-onedrive-graph-integration.md`](../../04-onedrive-graph-integration.md).
+> What the core feature does, from the owner's point of view. Design internals: [`01-requirements.md`](../design/01-requirements.md), [`02-architecture.md`](../design/02-architecture.md), [`04-onedrive-graph-integration.md`](../design/04-onedrive-graph-integration.md).
 
 ## What it does
 

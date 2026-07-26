@@ -1,6 +1,6 @@
 # Feature: Conversation store
 
-> Persist your app's user↔agent conversations in the same Qdrant instance, retrieve any whole conversation with nothing but its `conversationId`, and get hybrid search over chat history for free. Design internals: [`06-qdrant-design.md`](../../06-qdrant-design.md) §10.
+> Persist your app's user↔agent conversations in the same Qdrant instance, retrieve any whole conversation with nothing but its `conversationId`, and get hybrid search over chat history for free. Design internals: [`06-qdrant-design.md`](../design/06-qdrant-design.md) §10.
 
 ## The model
 

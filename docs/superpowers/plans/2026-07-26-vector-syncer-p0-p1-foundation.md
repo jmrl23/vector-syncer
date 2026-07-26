@@ -8,7 +8,7 @@
 
 **Tech Stack:** Node 24 / TypeScript 5 (strict), yarn 4, zod, pino, ioredis, @azure/msal-node, @microsoft/microsoft-graph-client, vitest, testcontainers; Python 3.12, uv, FastAPI, pytest; docker compose.
 
-**Spec:** `docs/superpowers/specs/2026-07-26-vector-syncer-design.md` · Detail docs `01`–`10-*.md` in repo root (esp. `04-onedrive-graph-integration.md`, `08-configuration-and-deployment.md`).
+**Spec:** `docs/superpowers/specs/2026-07-26-vector-syncer-design.md` · Detail docs `01`–`10-*.md` in `docs/design/` (esp. `04-onedrive-graph-integration.md`, `08-configuration-and-deployment.md`).
 
 ## Global Constraints
 
@@ -1248,7 +1248,7 @@ export async function graphGet<T>(client: Client, pathOrUrl: string): Promise<T>
 }
 ```
 
-Note: Node 24's global `fetch` satisfies the SDK's fetch requirement. If `createGraphClient` ever complains about a missing fetch implementation at runtime, add `yarn add cross-fetch` and `import 'cross-fetch/polyfill';` as the first line of `client.ts` — then record which was needed in `04-onedrive-graph-integration.md`.
+Note: Node 24's global `fetch` satisfies the SDK's fetch requirement. If `createGraphClient` ever complains about a missing fetch implementation at runtime, add `yarn add cross-fetch` and `import 'cross-fetch/polyfill';` as the first line of `client.ts` — then record which was needed in `docs/design/04-onedrive-graph-integration.md`.
 
 - [ ] **Step 4: Run test + typecheck to verify pass**
 
@@ -1494,7 +1494,7 @@ interface ClassifyCtx {
 classifyPage(items: DriveItem[], ctx: ClassifyCtx): Promise<Classified[]>
 ```
 
-  Rules (the classification table from `02-architecture.md` §3): the root folder itself → skip; folder entries → folder-map upsert (delete → `delete-folder` + map removal); deleted files → `delete-file`; files resolve their **base folder** = the ancestor whose parent is the root (`null` when the file sits directly in the root). New file or changed `cTag` → `process-file` (`new`/`content-changed`); same `cTag`, same base folder → `update-metadata`; same `cTag`, different base folder → `process-file` (`re-route`, carrying `previousBaseFolderId`). Folders are upserted **before** files within a page (delta pages can interleave). Unresolvable ancestry after the `fetchItem` fallback → `skip`/`unresolvable` (counted, never crashing).
+  Rules (the classification table from `docs/design/02-architecture.md` §3): the root folder itself → skip; folder entries → folder-map upsert (delete → `delete-folder` + map removal); deleted files → `delete-file`; files resolve their **base folder** = the ancestor whose parent is the root (`null` when the file sits directly in the root). New file or changed `cTag` → `process-file` (`new`/`content-changed`); same `cTag`, same base folder → `update-metadata`; same `cTag`, different base folder → `process-file` (`re-route`, carrying `previousBaseFolderId`). Folders are upserted **before** files within a page (delta pages can interleave). Unresolvable ancestry after the `fetchItem` fallback → `skip`/`unresolvable` (counted, never crashing).
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1844,7 +1844,7 @@ git commit -m "feat(cli): yarn dev:delta — classified dry run with persistent 
 ### Task 14: Phase-1 spike — verify the delta assumptions, encode the findings
 
 **Files:**
-- Modify: `04-onedrive-graph-integration.md` (add a "Spike findings" subsection under §4)
+- Modify: `docs/design/04-onedrive-graph-integration.md` (add a "Spike findings" subsection under §4)
 - Modify: `worker/tests/graph/classify.test.ts` (add regression fixtures for any behavior that differed)
 
 **Interfaces:**
@@ -1861,7 +1861,7 @@ git commit -m "feat(cli): yarn dev:delta — classified dry run with persistent 
 | 4 | Move a file between two base folders | One item with the new parent (expected: `re-route`)? |
 | 5 | Inspect one `WOULD index` item's raw JSON (temporarily `log.info({ item })` in `handlePage`) | Does `file.hashes.quickXorHash` exist on this drive? |
 
-- [ ] **Step 2: Write the findings into `04-onedrive-graph-integration.md` §4**
+- [ ] **Step 2: Write the findings into `docs/design/04-onedrive-graph-integration.md` §4**
 
 Add under §4 (replace the "assumptions to verify" caveats where they're now settled):
 
@@ -1887,11 +1887,11 @@ Expected: all green, including new regression tests.
 - [ ] **Step 4: Commit**
 
 ```bash
-git add 04-onedrive-graph-integration.md worker/tests/graph/classify.test.ts worker/src/graph/classify.ts
+git add docs/design/04-onedrive-graph-integration.md worker/tests/graph/classify.test.ts worker/src/graph/classify.ts
 git commit -m "docs(spike): delta edge-case findings from the real tenant + classifier regression fixtures"
 ```
 
-**P1 acceptance reached** (per `09-roadmap.md`): restart-safe incremental change listing; token refresh survives restarts; base folders resolved per file; spike questions answered and encoded.
+**P1 acceptance reached** (per `docs/design/09-roadmap.md`): restart-safe incremental change listing; token refresh survives restarts; base folders resolved per file; spike questions answered and encoded.
 
 ---
 

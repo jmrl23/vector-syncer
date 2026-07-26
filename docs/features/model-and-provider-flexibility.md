@@ -1,6 +1,6 @@
 # Feature: Model & provider flexibility
 
-> Every AI dependency is configuration. The system speaks to exactly one API shape — OpenAI-compatible, through the official OpenAI SDK — and everything specific lives in env vars. Design internals: [`10-decisions-and-risks.md`](../../10-decisions-and-risks.md) D4/D8/D11/D14.
+> Every AI dependency is configuration. The system speaks to exactly one API shape — OpenAI-compatible, through the official OpenAI SDK — and everything specific lives in env vars. Design internals: [`10-decisions-and-risks.md`](../design/10-decisions-and-risks.md) D4/D8/D11/D14.
 
 ## The whole contract is five env vars
 
